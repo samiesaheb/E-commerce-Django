@@ -1,0 +1,18 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-12 max-w-4xl">
+  <div class="bg-white border border-gray-200 rounded-lg shadow p-6">
+    {% if product.image %}
+      <img src="{% static 'images/' %}{{ image_folder }}/{{ product.image }}" alt="{{ product.name }}">
+    {% endif %}
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ product.name }}</h1>
+    <p class="text-gray-600 mb-4">{{ product.description }}</p>
+    {% if product.price %}
+      <p class="text-green-700 text-lg font-semibold">₹{{ product.price }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
