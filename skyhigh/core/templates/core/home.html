@@ -6,11 +6,11 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="relative h-screen bg-cover bg-center" style="background-image: url('{% static 'images/hero.jpg' %}');">
-  <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-center">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center text-center">
     <div class="text-white px-4">
       <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-wide uppercase">Concept to Creation</h1>
       <p class="text-lg md:text-xl font-light mb-6">Crafting beauty through innovation, science, and elegance.</p>
-      <a href="/brands/" class="inline-block bg-white text-black font-medium px-6 py-3 rounded hover:bg-gray-200 transition">Explore Our Brands</a>
+      <a href="/brands/" class="inline-block bg-white text-black font-medium px-6 py-3 rounded shadow-lg hover:shadow-xl hover:bg-gray-200 transition">Explore Our Brands</a>
     </div>
   </div>
 </section>
@@ -30,7 +30,7 @@
   <div class="container mx-auto px-6 text-center">
     <h2 class="text-2xl font-bold mb-4">Your Brand, Our Expertise</h2>
     <p class="mb-6 text-gray-600">Partner with us to create premium products that reflect your vision and values.</p>
-    <a href="/contact/" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">Contact Us</a>
+    <a href="/contact/" class="bg-black text-white px-6 py-3 rounded shadow-lg hover:shadow-xl hover:bg-gray-800 transition">Contact Us</a>
   </div>
 </section>
 {% endblock %}
