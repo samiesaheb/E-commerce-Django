@@ -7,6 +7,11 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     description = models.TextField(blank=True)
     brand = models.ForeignKey(Brand, related_name='products', on_delete=models.CASCADE)
+    
+    @property
+    def image(self) -> str:
+        """Return the expected image filename for this product."""
+        return f"{self.slug}.jpg"
 
     def __str__(self):
         return self.name

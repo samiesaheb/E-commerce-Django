@@ -1,7 +1,13 @@
 # core/urls.py
 from django.urls import path, include
+from django.views.generic import TemplateView
+from core.views.checkout import checkout_view  # ✅ import your new view
 
 urlpatterns = [
     # other includes like brands, etc.
     path('products/', include('core.urls.products')),
+    path('auth/', include('core.urls.auth', namespace='auth')),
+    path("cart/", include("core.urls.cart")),
+    path("checkout/", checkout_view, name="checkout"),  # ✅ define the route with name
+
 ]

@@ -1,0 +1,47 @@
+<!-- core/templates/core/login.html -->
+{% extends "core/base.html" %}
+{% block title %}Log In{% endblock %}
+{% load socialaccount %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8 bg-white p-8 rounded-lg shadow-md">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Welcome Back</h2>
+
+    </div>
+
+    <!-- Google Sign In Button -->
+    <div class="text-center">
+        <a href="{% provider_login_url 'google' %}"
+        class="w-full inline-flex justify-center items-center gap-2 border border-gray-300 px-4 py-2 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-100">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-5 h-5" />
+        Sign in with Google
+        </a>
+    </div>
+
+    <hr class="my-6">
+
+    <form method="POST" class="space-y-6">
+      {% csrf_token %}
+      {% for field in form %}
+        <div>
+          <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}
+            <p class="text-sm text-red-500 mt-1">{{ field.errors|join:", " }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+      <button type="submit"
+        class="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+        Log In
+      </button>
+        <p class="mt-2 text-center text-sm text-gray-600">
+        Don’t have an account?
+        <a href="{% url 'auth:signup' %}" class="font-medium text-red-600 hover:text-red-500">Sign up here</a>
+      </p>
+    </form>
+  </div>
+</div>
+{% endblock %}

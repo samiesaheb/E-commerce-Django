@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from core.models import Product
+from django.db.models import Q  # For search functionality
 
+# Detail View: Shows a single product
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
 
-    # Define slug-to-folder mapping
+    # Map known brand slugs to their image folders
     image_folder_map = {
         "geometry": "geometry",
         "facial-care": "facialcare",
@@ -12,11 +14,37 @@ def product_detail(request, slug):
         "hair-care": "haircare",
     }
 
-    # Get the brand's slug
-    brand_slug = product.brand.slug
-    image_folder = image_folder_map.get(brand_slug, brand_slug)
+    image_folder = image_folder_map.get(product.brand.slug, "default")
 
-    return render(request, "core/product_detail.html", {
+    context = {
         "product": product,
         "image_folder": image_folder,
-    })
+    }
+    return render(request, "core/product_detail.html", context)
+
+
+# List View: Shows all products (optional if you're only listing by brand)
+def product_list(request):
+    products = Product.objects.all().select_related("brand").order_by("brand__name", "name")
+
+    context = {
+        "products": products,
+    }
+    return render(request, "core/product_list.html", context)
+
+
+# Search View: Returns products matching query
+def product_search(request):
+    query = request.GET.get('q', '')
+    results = []
+
+    if query:
+        results = Product.objects.filter(
+            Q(name__icontains=query) | Q(description__icontains=query)
+        ).select_related("brand")
+
+    context = {
+        "query": query,
+        "results": results
+    }
+    return render(request, "core/product_search.html", context)

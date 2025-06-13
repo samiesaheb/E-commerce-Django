@@ -1,30 +1,61 @@
 <header class="bg-white shadow">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between relative">
-    
-    <!-- Left: Navigation Links -->
-    <nav>
-      <ul class="flex space-x-6 text-sm font-medium text-gray-700 relative">
-        <li><a href="/about/" class="hover:text-red-600">About</a></li>
+  <div class="max-w-7xl mx-auto px-4 py-1">
+    <div class="flex items-center justify-between">
 
-        <!-- Dropdown Menu for Brands -->
-        <li class="relative group">
-          <a href="/brands/" class="hover:text-red-600">Brands</a>
-          <ul class="absolute left-0 mt-2 w-48 bg-white shadow-md border rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-            <li><a href="/brands/geometry/" class="block px-4 py-2 hover:bg-gray-100">Geometry</a></li>
-            <li><a href="/brands/facial-care/" class="block px-4 py-2 hover:bg-gray-100">Facial Care</a></li>
-            <li><a href="/brands/body-and-skin-care/" class="block px-4 py-2 hover:bg-gray-100">Body & Skin Care</a></li>
-            <li><a href="/brands/hair-care/" class="block px-4 py-2 hover:bg-gray-100">Hair Care</a></li>
-          </ul>
-        </li>
+      <!-- Left: Navigation Links -->
+      <nav class="flex-1">
+        <ul class="flex space-x-4 text-sm font-medium text-gray-700 items-center">
+          <li><a href="/about/" class="hover:text-red-600">About</a></li>
+          <li class="relative group">
+            <a href="/brands/" class="hover:text-red-600">Brands</a>
+            <ul class="absolute left-0 mt-1 w-44 bg-white shadow-md border rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10 text-sm">
+              <li><a href="/brands/geometry/" class="block px-3 py-1 hover:bg-gray-100">Geometry</a></li>
+              <li><a href="/brands/facial-care/" class="block px-3 py-1 hover:bg-gray-100">Facial Care</a></li>
+              <li><a href="/brands/body-and-skin-care/" class="block px-3 py-1 hover:bg-gray-100">Body & Skin Care</a></li>
+              <li><a href="/brands/hair-care/" class="block px-3 py-1 hover:bg-gray-100">Hair Care</a></li>
+            </ul>
+          </li>
+          <li><a href="/contact/" class="hover:text-red-600">Contact</a></li>
+        </ul>
+      </nav>
 
-        <li><a href="/contact/" class="hover:text-red-600">Contact</a></li>
-      </ul>
-    </nav>
+      <!-- Center: Logo + Search -->
+      <div class="flex flex-col items-center">
+        <a href="/" class="text-xl font-extrabold text-red-600">Sky High</a>
+        <form action="{% url 'products:search' %}" method="GET" class="mt-1">
+          <input type="text" name="q" placeholder="Search products..."
+                 class="w-80 px-3 py-1.5 border border-gray-300 rounded-md shadow text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500">
+        </form>
+      </div>
 
-    <!-- Center: Logo -->
-    <div class="absolute left-1/2 transform -translate-x-1/2">
-      <a href="/" class="text-xl font-bold text-red-600">Sky High</a>
+      <!-- Right: Cart + Auth -->
+      <div class="flex-1 flex justify-end space-x-4 text-sm font-medium text-gray-700 items-center">
+
+        <!-- Cart icon with item count -->
+        <a href="{% url 'cart:show' %}" class="relative hover:text-red-600" aria-label="View Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 10-8 0v4M5 11h14l-1.5 9h-11L5 11z" />
+          </svg>
+          {% if cart_item_count and cart_item_count|add:'0' > 0 %}
+            <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold rounded-full h-5 w-5 flex items-center justify-center shadow">
+              {{ cart_item_count }}
+            </span>
+          {% endif %}
+        </a>
+
+        <!-- Auth Links -->
+        {% if user.is_authenticated %}
+          <form method="POST" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="hover:text-red-600 bg-transparent border-none p-0 m-0">Logout</button>
+          </form>
+          <a href="{% url 'auth:profile' %}" class="hover:text-red-600">My Profile</a>
+        {% else %}
+          <a href="{% url 'auth:login' %}" class="hover:text-red-600">Login</a>
+          <a href="{% url 'auth:signup' %}" class="hover:text-red-600">Sign up</a>
+        {% endif %}
+      </div>
+
     </div>
-
   </div>
 </header>
