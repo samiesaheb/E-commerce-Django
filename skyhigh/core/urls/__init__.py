@@ -8,6 +8,5 @@ urlpatterns = [
     path('contact/', contact.contact_page, name='contact'),
     path('brands/', brands.brand_index, name='brand-index'),
     path('brands/<slug:slug>/', brands.brand_detail, name='brand-detail'),
-    path('products/', include('core.urls.products')),
     path("auth/", include("core.urls.auth", namespace="auth")),
 ]

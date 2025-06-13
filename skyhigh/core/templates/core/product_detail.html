@@ -28,17 +28,45 @@
       </div>
 
       {% if product.brand.slug == "geometry" %}
-        <form method="POST" action="{% url 'cart:add' product.id %}">
-          {% csrf_token %}
-          <button type="submit"
-                  class="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded shadow transition duration-200">
-            Add to Cart
-          </button>
-        </form>
-      {% else %}
+        <button 
+          onclick="addToCart({{ product.id }})"
+          class="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded shadow transition duration-200">
+          Add to Cart
+        </button>
       {% endif %}
     </div>
 
   </div>
 </div>
+
+<!-- AJAX Script for Add to Cart -->
+<script>
+  function addToCart(productId) {
+    fetch(`/cart/add/${productId}/`, {
+      method: 'POST',
+      headers: {
+        'X-CSRFToken': '{{ csrf_token }}',
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: JSON.stringify({})
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        // ✅ Update cart badge using Alpine global event
+        window.dispatchEvent(new CustomEvent('cart-updated', {
+          detail: { count: data.cart_count }
+        }));
+        alert("✅ Added to cart!");
+      } else {
+        alert("❌ Could not add to cart.");
+      }
+    })
+    .catch(error => {
+      console.error("Error adding to cart:", error);
+      alert("❌ An error occurred.");
+    });
+  }
+</script>
 {% endblock %}

@@ -76,18 +76,22 @@
       </div>
 
       <!-- Right: Cart + Auth -->
-      <div class="flex-1 flex justify-end space-x-4 text-sm font-medium text-gray-700 items-center">
-
-        <!-- Cart icon with item count -->
+      <div 
+        class="flex-1 flex justify-end space-x-4 text-sm font-medium text-gray-700 items-center"
+        x-data="{ count: {{ cart_item_count|default:0 }} }"
+        x-init="window.addEventListener('cart-updated', e => count = e.detail.count)"
+        id="cart-icon"
+      >
+        <!-- Cart icon with dynamic badge -->
         <a href="{% url 'cart:show' %}" class="relative hover:text-red-600 transition-colors duration-200" aria-label="View Cart">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 10-8 0v4M5 11h14l-1.5 9h-11L5 11z" />
           </svg>
-          {% if cart_item_count and cart_item_count|add:'0' > 0 %}
+          <template x-if="count > 0">
             <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold rounded-full h-5 w-5 flex items-center justify-center shadow">
-              {{ cart_item_count }}
+              <span x-text="count"></span>
             </span>
-          {% endif %}
+          </template>
         </a>
 
         <!-- Auth Links -->

@@ -4,6 +4,7 @@ from core.models import Product
 from typing import Dict, List
 from django.db.models import QuerySet
 from typing import cast
+from django.http import JsonResponse
 
 @require_POST
 def add_to_cart(request, product_id):
@@ -17,9 +18,15 @@ def add_to_cart(request, product_id):
         cart[product_id_str] = 1
 
     request.session["cart"] = cart
+    cart_count = sum(cart.values())
 
-    # Redirect back to the same page
+    # Handle AJAX request
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({"success": True, "cart_count": cart_count})
+
+    # Fallback: normal redirect for non-AJAX
     return redirect(request.META.get("HTTP_REFERER", "/"))
+
 
 
 def view_cart(request):

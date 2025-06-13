@@ -51,12 +51,27 @@ def product_search(request):
     return render(request, "core/product_search.html", context)
 
 
-def product_autocomplete(request):
-    q = request.GET.get("q", "")
-    results = []
+# def product_autocomplete(request):
+#     query = request.GET.get('q', '')
+#     results = []
 
-    if q:
-        products = Product.objects.filter(name__icontains=q)[:5]
-        results = [{"id": p.id, "name": p.name} for p in products]
+#     if query:
+#         products = Product.objects.filter(name__icontains=query)[:10]
+#         results = [
+#             {"id": p.id, "name": p.name, "slug": p.slug}
+#             for p in products
+#         ]
+
+#     return JsonResponse(results, safe=False)
+
+
+def product_autocomplete(request):
+    query = request.GET.get('q', '')
+    print("🔎 Autocomplete hit with query:", query)  # Debug print to terminal/log
+
+    results = []
+    if query:
+        products = Product.objects.filter(name__icontains=query)[:10]
+        results = [{"id": p.id, "name": p.name, "slug": p.slug} for p in products]
 
     return JsonResponse(results, safe=False)
