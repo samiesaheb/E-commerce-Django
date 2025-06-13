@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from core.models import Product
 from django.db.models import Q  # For search functionality
+from django.http import JsonResponse
 
 # Detail View: Shows a single product
 def product_detail(request, slug):
@@ -48,3 +49,14 @@ def product_search(request):
         "results": results
     }
     return render(request, "core/product_search.html", context)
+
+
+def product_autocomplete(request):
+    q = request.GET.get("q", "")
+    results = []
+
+    if q:
+        products = Product.objects.filter(name__icontains=q)[:5]
+        results = [{"id": p.id, "name": p.name} for p in products]
+
+    return JsonResponse(results, safe=False)
