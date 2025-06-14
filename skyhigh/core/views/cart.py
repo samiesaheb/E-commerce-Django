@@ -1,10 +1,12 @@
-from django.shortcuts import redirect, render, get_object_or_404
-from django.views.decorators.http import require_POST
-from core.models import Product
-from typing import Dict, List
+from typing import Dict, List, cast
+
 from django.db.models import QuerySet
-from typing import cast
 from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
+
+from core.models import Product
+
 
 @require_POST
 def add_to_cart(request, product_id):
@@ -28,7 +30,6 @@ def add_to_cart(request, product_id):
     return redirect(request.META.get("HTTP_REFERER", "/"))
 
 
-
 def view_cart(request):
     cart: Dict[str, int] = request.session.get("cart", {})
     product_ids: List[int] = [int(pid) for pid in cart.keys()]
@@ -44,11 +45,7 @@ def view_cart(request):
         quantity = cart.get(product_id_str, 0)
         if product.price:
             total += product.price * quantity
-        cart_items.append({
-            "product": product,
-            "quantity": quantity,
-            "id": product.id
-        })
+        cart_items.append({"product": product, "quantity": quantity, "id": product.id})
 
     return render(request, "core/cart.html", {"cart_items": cart_items, "total": total})
 
@@ -60,6 +57,7 @@ def increment_item(request, item_id):
         cart[item_id] += 1
         request.session["cart"] = cart
     return redirect("cart:show")
+
 
 def decrement_item(request, item_id):
     cart = request.session.get("cart", {})

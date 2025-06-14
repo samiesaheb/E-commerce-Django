@@ -1,20 +1,38 @@
-{% extends "core/base.html" %}
-{% load static %}
+{% extends "core/base.html" %} {% load static %}
 
 <title>{% block title %}Sky High{% endblock %}</title>
 
 {% block content %}
 <!-- Hero Section -->
-<section class="relative h-screen bg-cover bg-center" style="background-image: url('{% static 'images/hero.jpg' %}');" data-aos="fade-in">
-  <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-center">
-    <div class="text-white px-4 max-w-2xl" data-aos="zoom-in" data-aos-delay="200">
-    <h1 class="text-6xl md:text-8xl font-light mb-8 tracking-widest uppercase leading-tight text-black">
-      Concept to Creation
-    </h1>
-    <p class="text-xl md:text-2xl font-light mb-10 text-black">
-      Crafting beauty through innovation, science, and elegance.
-    </p>
-      <a href="/brands/" class="inline-block bg-white text-black text-base tracking-widest font-semibold px-10 py-4 rounded-full shadow-md hover:bg-gray-100 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+<section
+  class="relative h-screen bg-cover bg-center"
+  style="
+    background-image: url(&quot;{% static &quot;images/hero.jpg&quot; %}&quot;);
+  "
+  data-aos="fade-in"
+>
+  <div
+    class="absolute inset-0 bg-black/60 flex items-center justify-center text-center"
+  >
+    <div
+      class="text-white px-4 max-w-2xl"
+      data-aos="zoom-in"
+      data-aos-delay="200"
+    >
+      <h1
+        class="text-6xl md:text-8xl font-light mb-8 tracking-widest uppercase leading-tight text-black"
+      >
+        Concept to Creation
+      </h1>
+      <p class="text-xl md:text-2xl font-light mb-10 text-black">
+        Crafting beauty through innovation, science, and elegance.
+      </p>
+      <a
+        href="/brands/"
+        class="inline-block bg-white text-black text-base tracking-widest font-semibold px-10 py-4 rounded-full shadow-md hover:bg-gray-100 transition-all duration-300"
+        data-aos="fade-up"
+        data-aos-delay="400"
+      >
         Explore Our Brands
       </a>
     </div>
@@ -24,9 +42,21 @@
 <!-- About Section -->
 <section class="py-24 bg-white" data-aos="fade-up">
   <div class="container mx-auto px-6 text-center max-w-3xl">
-    <h2 class="text-4xl font-light uppercase tracking-wider mb-6" data-aos="fade-up" data-aos-delay="100">Elevating Cosmetic Standards</h2>
-    <p class="text-gray-700 text-lg leading-relaxed font-light" data-aos="fade-up" data-aos-delay="200">
-      At Sky High International, we blend modern science with timeless ingredients to deliver private-label skincare, body care, and haircare solutions of uncompromising quality. Trusted by global luxury brands.
+    <h2
+      class="text-4xl font-light uppercase tracking-wider mb-6"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      Elevating Cosmetic Standards
+    </h2>
+    <p
+      class="text-gray-700 text-lg leading-relaxed font-light"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      At Sky High International, we blend modern science with timeless
+      ingredients to deliver private-label skincare, body care, and haircare
+      solutions of uncompromising quality. Trusted by global luxury brands.
     </p>
   </div>
 </section>
@@ -34,21 +64,62 @@
 <!-- Call-to-Action Section -->
 <section class="py-24 bg-gray-50" data-aos="fade-up">
   <div class="container mx-auto px-6 text-center">
-    <h2 class="text-3xl font-light uppercase tracking-wide mb-4" data-aos="fade-up" data-aos-delay="100">Your Brand, Our Expertise</h2>
-    <p class="mb-6 text-gray-600 text-lg font-light" data-aos="fade-up" data-aos-delay="200">Partner with us to create elegant, high-performance cosmetics that reflect your vision.</p>
-    <a href="/contact/" class="bg-black text-white tracking-wide px-8 py-3 rounded-full shadow hover:bg-gray-900 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+    <h2
+      class="text-3xl font-light uppercase tracking-wide mb-4"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      Your Brand, Our Expertise
+    </h2>
+    <p
+      class="mb-6 text-gray-600 text-lg font-light"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      Partner with us to create elegant, high-performance cosmetics that reflect
+      your vision.
+    </p>
+    <a
+      href="/contact/"
+      class="bg-black text-white tracking-wide px-8 py-3 rounded-full shadow hover:bg-gray-900 transition-all duration-300"
+      data-aos="fade-up"
+      data-aos-delay="300"
+    >
       Contact Us
     </a>
   </div>
 </section>
 {% endblock %}
 <!-- Hero Section -->
-<section class="relative h-screen bg-cover bg-center" style="background-image: url('{% static 'images/hero.jpg' %}');" data-aos="fade-in">
-  <div class="absolute inset-0 bg-black/60 flex items-center justify-center text-center">
-    <div class="text-white px-4 max-w-2xl" data-aos="zoom-in" data-aos-delay="200">
-      <h1 class="text-6xl md:text-8xl font-light mb-8 tracking-widest uppercase leading-tight">Concept to Creation</h1>
-      <p class="text-xl md:text-2xl font-light mb-10">Crafting beauty through innovation, science, and elegance.</p>
-      <a href="/brands/" class="inline-block bg-white text-black text-base tracking-widest font-semibold px-10 py-4 rounded-full shadow-md hover:bg-gray-100 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+<section
+  class="relative h-screen bg-cover bg-center"
+  style="
+    background-image: url(&quot;{% static &quot;images/hero.jpg&quot; %}&quot;);
+  "
+  data-aos="fade-in"
+>
+  <div
+    class="absolute inset-0 bg-black/60 flex items-center justify-center text-center"
+  >
+    <div
+      class="text-white px-4 max-w-2xl"
+      data-aos="zoom-in"
+      data-aos-delay="200"
+    >
+      <h1
+        class="text-6xl md:text-8xl font-light mb-8 tracking-widest uppercase leading-tight"
+      >
+        Concept to Creation
+      </h1>
+      <p class="text-xl md:text-2xl font-light mb-10">
+        Crafting beauty through innovation, science, and elegance.
+      </p>
+      <a
+        href="/brands/"
+        class="inline-block bg-white text-black text-base tracking-widest font-semibold px-10 py-4 rounded-full shadow-md hover:bg-gray-100 transition-all duration-300"
+        data-aos="fade-up"
+        data-aos-delay="400"
+      >
         Explore Our Brands
       </a>
     </div>
@@ -58,9 +129,21 @@
 <!-- About Section -->
 <section class="py-24 bg-white" data-aos="fade-up">
   <div class="container mx-auto px-6 text-center max-w-3xl">
-    <h2 class="text-4xl font-light uppercase tracking-wider mb-6" data-aos="fade-up" data-aos-delay="100">Elevating Cosmetic Standards</h2>
-    <p class="text-gray-700 text-lg leading-relaxed font-light" data-aos="fade-up" data-aos-delay="200">
-      At Sky High International, we blend modern science with timeless ingredients to deliver private-label skincare, body care, and haircare solutions of uncompromising quality. Trusted by global luxury brands.
+    <h2
+      class="text-4xl font-light uppercase tracking-wider mb-6"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      Elevating Cosmetic Standards
+    </h2>
+    <p
+      class="text-gray-700 text-lg leading-relaxed font-light"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      At Sky High International, we blend modern science with timeless
+      ingredients to deliver private-label skincare, body care, and haircare
+      solutions of uncompromising quality. Trusted by global luxury brands.
     </p>
   </div>
 </section>
@@ -68,11 +151,28 @@
 <!-- Call-to-Action Section -->
 <section class="py-24 bg-gray-50" data-aos="fade-up">
   <div class="container mx-auto px-6 text-center">
-    <h2 class="text-3xl font-light uppercase tracking-wide mb-4" data-aos="fade-up" data-aos-delay="100">Your Brand, Our Expertise</h2>
-    <p class="mb-6 text-gray-600 text-lg font-light" data-aos="fade-up" data-aos-delay="200">Partner with us to create elegant, high-performance cosmetics that reflect your vision.</p>
-    <a href="/contact/" class="bg-black text-white tracking-wide px-8 py-3 rounded-full shadow hover:bg-gray-900 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+    <h2
+      class="text-3xl font-light uppercase tracking-wide mb-4"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      Your Brand, Our Expertise
+    </h2>
+    <p
+      class="mb-6 text-gray-600 text-lg font-light"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      Partner with us to create elegant, high-performance cosmetics that reflect
+      your vision.
+    </p>
+    <a
+      href="/contact/"
+      class="bg-black text-white tracking-wide px-8 py-3 rounded-full shadow hover:bg-gray-900 transition-all duration-300"
+      data-aos="fade-up"
+      data-aos-delay="300"
+    >
       Contact Us
     </a>
   </div>
 </section>
-
