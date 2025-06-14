@@ -1,12 +1,17 @@
-{% extends "core/base.html" %}
-{% load static %}
-
-{% block title %}Contact - Sky High{% endblock %}
-
-{% block content %}
-<section class="relative bg-cover bg-center h-72" style="background-image: url('{% static 'images/contact-banner.jpg' %}');">
-  <div class="h-full w-full bg-black bg-opacity-50 flex items-center justify-center">
-    <h1 class="text-white text-4xl md:text-5xl font-bold tracking-wide">Get in Touch</h1>
+{% extends "core/base.html" %} {% load static %} {% block title %}Contact - Sky
+High{% endblock %} {% block content %}
+<section
+  class="relative bg-cover bg-center h-72"
+  style="
+    background-image: url(&quot;{% static &quot;images/contact-banner.jpg&quot; %}&quot;);
+  "
+>
+  <div
+    class="h-full w-full bg-black bg-opacity-50 flex items-center justify-center"
+  >
+    <h1 class="text-white text-4xl md:text-5xl font-bold tracking-wide">
+      Get in Touch
+    </h1>
   </div>
 </section>
 
@@ -14,39 +19,92 @@
   <div class="container mx-auto px-6 max-w-3xl">
     <h2 class="text-3xl font-semibold mb-4 text-center">Contact Us</h2>
     <p class="text-gray-700 text-center mb-10">
-      We'd love to hear from you. For business inquiries, product collaborations, or support, reach out via the following channels.
+      We'd love to hear from you. For business inquiries, product
+      collaborations, or support, reach out via the following channels.
     </p>
 
     <div class="bg-gray-50 p-8 rounded-lg shadow-md mb-12">
       <ul class="space-y-4 text-gray-800 text-lg">
-        <li><strong>Email:</strong> <a href="mailto:samie@skyhigh.co.th" class="text-red-600 hover:underline">samie@skyhigh.co.th</a></li>
-        <li><strong>Phone:</strong> <a href="tel:+6623233517" class="hover:underline">+66 (2) 323 3517 – 20</a></li>
+        <li>
+          <strong>Email:</strong>
+          <a
+            href="mailto:samie@skyhigh.co.th"
+            class="text-red-600 hover:underline"
+            >samie@skyhigh.co.th</a
+          >
+        </li>
+        <li>
+          <strong>Phone:</strong>
+          <a href="tel:+6623233517" class="hover:underline"
+            >+66 (2) 323 3517 – 20</a
+          >
+        </li>
         <li><strong>Fax:</strong> +66 (2) 232 33516</li>
-        <li><strong>Address:</strong><br>524 Moo 7, Bangpoo Mai, Muang, Samutprakarn 10280, Thailand</li>
+        <li>
+          <strong>Address:</strong><br />524 Moo 7, Bangpoo Mai, Muang,
+          Samutprakarn 10280, Thailand
+        </li>
       </ul>
     </div>
 
     <h3 class="text-2xl font-semibold mb-6 text-center">Send Us a Message</h3>
 
-    <form action="https://formspree.io/f/mqabqodb" method="POST" class="bg-white p-8 rounded-lg shadow">
+    <form
+      action="https://formspree.io/f/mqabqodb"
+      method="POST"
+      class="bg-white p-8 rounded-lg shadow"
+    >
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <div>
-          <label for="name" class="block mb-2 text-sm font-medium text-gray-700">Your Name</label>
-          <input type="text" id="name" name="name" required class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black">
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-700"
+            >Your Name</label
+          >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+          />
         </div>
         <div>
-          <label for="email" class="block mb-2 text-sm font-medium text-gray-700">Email</label>
-          <input type="email" id="email" name="email" required class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black">
+          <label
+            for="email"
+            class="block mb-2 text-sm font-medium text-gray-700"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+          />
         </div>
       </div>
 
       <div class="mb-6">
-        <label for="message" class="block mb-2 text-sm font-medium text-gray-700">Message</label>
-        <textarea id="message" name="message" rows="5" required class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"></textarea>
+        <label
+          for="message"
+          class="block mb-2 text-sm font-medium text-gray-700"
+          >Message</label
+        >
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          required
+          class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-black"
+        ></textarea>
       </div>
 
       <div class="text-center">
-        <button type="submit" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition">Send Message</button>
+        <button
+          type="submit"
+          class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition"
+        >
+          Send Message
+        </button>
       </div>
     </form>
   </div>

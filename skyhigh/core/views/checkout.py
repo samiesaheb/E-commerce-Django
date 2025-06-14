@@ -1,8 +1,10 @@
-from django.shortcuts import render
-from core.models import Product
-from typing import Dict, List
+from typing import Dict, List, cast
+
 from django.db.models import QuerySet
-from typing import cast
+from django.shortcuts import render
+
+from core.models import Product
+
 
 def checkout_view(request):
     cart: Dict[str, int] = request.session.get("cart", {})
@@ -18,13 +20,8 @@ def checkout_view(request):
         quantity = cart.get(product_id_str, 0)
         if product.price:
             total += product.price * quantity
-        cart_items.append({
-            "product": product,
-            "quantity": quantity,
-            "id": product.id
-        })
+        cart_items.append({"product": product, "quantity": quantity, "id": product.id})
 
-    return render(request, "core/checkout.html", {
-        "cart_items": cart_items,
-        "total": total
-    })
+    return render(
+        request, "core/checkout.html", {"cart_items": cart_items, "total": total}
+    )

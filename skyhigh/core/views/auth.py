@@ -1,21 +1,25 @@
 # core/views/auth.py
 
-from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from core.forms import SignUpForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
+
+from core.forms import SignUpForm
+
 
 def signup_view(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.backend = 'django.contrib.auth.backends.ModelBackend'  # 👈 Important for multiple backends
+            user.backend = "django.contrib.auth.backends.ModelBackend"
+            # 👈 Important for multiple backends
             login(request, user)
-            return redirect('auth:profile')
+            return redirect("auth:profile")
     else:
         form = SignUpForm()
-    return render(request, 'core/signup.html', {'form': form})
+    return render(request, "core/signup.html", {"form": form})
+
 
 @login_required
 def profile_view(request):
@@ -29,7 +33,11 @@ def profile_view(request):
         "last_name": user.last_name,
     }
 
-    return render(request, "core/profile.html", {
-        "user": user,
-        "user_info": user_info,
-    })
+    return render(
+        request,
+        "core/profile.html",
+        {
+            "user": user,
+            "user_info": user_info,
+        },
+    )

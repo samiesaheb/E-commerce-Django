@@ -1,33 +1,48 @@
-{% extends "core/base.html" %}
-{% load static %}
-
-{% block title %}About - Sky High{% endblock %}
-
-{% block content %}
-<section class="relative bg-cover bg-center h-72" style="background-image: url('{% static 'images/about-banner.jpg' %}');">
-  <div class="h-full w-full bg-black bg-opacity-60 flex items-center justify-center">
-    <h1 class="text-white text-4xl md:text-5xl font-bold tracking-wide">About Sky High</h1>
+{% extends "core/base.html" %} {% load static %} {% block title %}About - Sky
+High{% endblock %} {% block content %}
+<section
+  class="relative bg-cover bg-center h-72"
+  style="
+    background-image: url(&quot;{% static &quot;images/about-banner.jpg&quot; %}&quot;);
+  "
+>
+  <div
+    class="h-full w-full bg-black bg-opacity-60 flex items-center justify-center"
+  >
+    <h1 class="text-white text-4xl md:text-5xl font-bold tracking-wide">
+      About Sky High
+    </h1>
   </div>
 </section>
 
 <section class="py-16 bg-white">
   <div class="container mx-auto px-6 max-w-4xl">
-    <h2 class="text-3xl font-semibold text-center mb-6">We Bring the Best to Everything We Touch</h2>
+    <h2 class="text-3xl font-semibold text-center mb-6">
+      We Bring the Best to Everything We Touch
+    </h2>
     <p class="text-gray-700 text-lg mb-6 text-center">
-      Established in 2000, Sky High International Co., Ltd. is a private label cosmetic manufacturer specializing in skin, body, and hair care solutions. We are committed to creating safe, high-quality, and effective products that meet international standards while staying true to our customer-focused philosophy: <strong>"You need it? We make it!"</strong>
+      Established in 2000, Sky High International Co., Ltd. is a private label
+      cosmetic manufacturer specializing in skin, body, and hair care solutions.
+      We are committed to creating safe, high-quality, and effective products
+      that meet international standards while staying true to our
+      customer-focused philosophy: <strong>"You need it? We make it!"</strong>
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
       <div>
         <h3 class="text-xl font-semibold mb-3">🌍 Vision</h3>
         <p class="text-gray-700 text-base">
-          To develop innovative, high-quality, and environmentally friendly cosmetic products that build customer trust, expand global reach, and enhance market reputation.
+          To develop innovative, high-quality, and environmentally friendly
+          cosmetic products that build customer trust, expand global reach, and
+          enhance market reputation.
         </p>
       </div>
       <div>
         <h3 class="text-xl font-semibold mb-3">🎯 Mission</h3>
         <p class="text-gray-700 text-base">
-          To ensure the highest quality in a competitive market by sourcing top-grade ingredients and formulating from proven, safe recipes—delivering value with integrity and excellence.
+          To ensure the highest quality in a competitive market by sourcing
+          top-grade ingredients and formulating from proven, safe
+          recipes—delivering value with integrity and excellence.
         </p>
       </div>
     </div>
@@ -35,7 +50,11 @@
     <div class="mt-12">
       <h3 class="text-xl font-semibold mb-3">🏭 Facilities & Team</h3>
       <p class="text-gray-700 text-base">
-        With ISO 9001:2015 certification, a 75-member skilled workforce, and an in-house R&D team, we ensure every product is crafted to meet precise customer needs. Our major markets include GCC and African Union countries, and we proudly market our brands: <strong>Geometry</strong> and <strong>Iffa</strong>.
+        With ISO 9001:2015 certification, a 75-member skilled workforce, and an
+        in-house R&D team, we ensure every product is crafted to meet precise
+        customer needs. Our major markets include GCC and African Union
+        countries, and we proudly market our brands:
+        <strong>Geometry</strong> and <strong>Iffa</strong>.
       </p>
     </div>
   </div>
