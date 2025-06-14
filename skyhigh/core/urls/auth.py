@@ -1,5 +1,5 @@
 # core/urls/auth.py
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from core.views.auth import signup_view, profile_view
 
@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
     path('signup/', signup_view, name='signup'),
     path('profile/', profile_view, name='profile'),
+    path('accounts/', include('allauth.urls')),
 ]
