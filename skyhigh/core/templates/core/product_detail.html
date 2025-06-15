@@ -1,55 +1,46 @@
-{% extends 'core/base.html' %} {% load static %} {% block title %}{{
-product.name }}{% endblock %} {% block content %}
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
 <div class="max-w-5xl mx-auto px-4 py-12">
   <!-- Breadcrumbs -->
   <nav class="text-sm text-gray-500 mb-6">
     <a href="/" class="hover:text-red-600">Home</a> /
     <a href="/brands/" class="hover:text-red-600">Brands</a> /
-    <a href="/brands/{{ product.brand.slug }}/" class="hover:text-red-600"
-      >{{ product.brand.name }}</a
-    >
-    /
+    <a href="/brands/{{ product.brand.slug }}/" class="hover:text-red-600">{{ product.brand.name }}</a> /
     <span class="text-gray-800">{{ product.name }}</span>
   </nav>
 
-  <div
-    class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white border border-gray-200 rounded-lg shadow-lg p-6"
-  >
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white border border-gray-200 rounded-xl shadow-md p-6">
+    
     <!-- Product Image -->
     {% if product.image %}
-    <div class="flex justify-center">
-      <img
-        src="{% static 'images/' %}{{ image_folder }}/{{ product.image }}"
-        alt="{{ product.name }}"
-        class="w-full max-w-md h-auto object-cover rounded"
-      />
-    </div>
+      <div class="aspect-square overflow-hidden rounded-lg">
+        <img src="{% static 'images/' %}{{ image_folder }}/{{ product.image }}"
+             alt="{{ product.name }}"
+             class="object-cover w-full h-full transition-transform duration-300 hover:scale-105">
+      </div>
     {% endif %}
 
     <!-- Product Info -->
     <div class="flex flex-col justify-between">
       <div>
-        <h1 class="text-3xl font-bold text-gray-900 mb-4">
-          {{ product.name }}
-        </h1>
-        <p class="text-gray-700 text-base mb-6 leading-relaxed">
-          {{ product.description }}
-        </p>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ product.name }}</h1>
+        <p class="text-gray-700 text-base mb-6 leading-relaxed">{{ product.description }}</p>
 
         {% if product.brand.slug == "geometry" %}
-        <p class="text-xl font-semibold text-red-600 mb-4">
-          ₹{{ product.price }}
-        </p>
+          <p class="text-xl font-semibold text-green-700 mb-4">₹{{ product.price }}</p>
         {% endif %}
       </div>
 
       {% if product.brand.slug == "geometry" %}
-      <button
-        onclick="addToCart({{ product.id }})"
-        class="mt-4 w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded shadow transition duration-200"
-      >
-        Add to Cart
-      </button>
+        <button 
+          onclick="addToCart({{ product.id }})"
+          class="w-full mt-4 bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-4 py-2 rounded-md shadow transition duration-300">
+          Add to Cart
+        </button>
       {% endif %}
     </div>
   </div>
@@ -59,32 +50,29 @@ product.name }}{% endblock %} {% block content %}
 <script>
   function addToCart(productId) {
     fetch(`/cart/add/${productId}/`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "X-CSRFToken": "{{ csrf_token }}",
-        "Content-Type": "application/json",
-        "X-Requested-With": "XMLHttpRequest",
+        'X-CSRFToken': '{{ csrf_token }}',
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({})
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          // ✅ Update cart badge using Alpine global event
-          window.dispatchEvent(
-            new CustomEvent("cart-updated", {
-              detail: { count: data.cart_count },
-            }),
-          );
-          alert("✅ Added to cart!");
-        } else {
-          alert("❌ Could not add to cart.");
-        }
-      })
-      .catch((error) => {
-        console.error("Error adding to cart:", error);
-        alert("❌ An error occurred.");
-      });
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        window.dispatchEvent(new CustomEvent('cart-updated', {
+          detail: { count: data.cart_count }
+        }));
+        alert("✅ Added to cart!");
+      } else {
+        alert("❌ Could not add to cart.");
+      }
+    })
+    .catch(error => {
+      console.error("Error adding to cart:", error);
+      alert("❌ An error occurred.");
+    });
   }
 </script>
 {% endblock %}
