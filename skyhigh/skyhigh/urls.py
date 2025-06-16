@@ -17,14 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from core.views.checkout import checkout_view
+from core.views.checkout import checkout_view, process_payment
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('', include('core.urls')),  # General routes (home, brands, etc.)
+    path('', include(('core.urls', 'core'), namespace='core')),
     path('auth/', include(('core.urls.auth', 'auth'), namespace='auth')),  # Auth routes
     path('products/', include(('core.urls.products', 'products'), namespace='products')),  # Product routes
     path('cart/', include('core.urls.cart', namespace='cart')),
     path('checkout/', checkout_view, name='checkout'),
+    path("process-payment/", process_payment, name="process-payment"),
 ]
 
