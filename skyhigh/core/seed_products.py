@@ -14,19 +14,19 @@ products_by_brand = {
             "name": "Geometry Facial Foam",
             "slug": "geometry-whitening-facial-foam",
             "description": "A gentle, pH-balanced cleansing foam that purifies and refreshes skin without stripping moisture. Ideal for daily use to remove impurities and leave skin feeling soft and supple.",
-            "price": Decimal("12.99"),
+            "price": Decimal("120.00"),
         },
         {
             "name": "Geometry Hair Serum",
             "slug": "geometry-extra-hair-serum",
             "description": "A lightweight hair serum formulated with argan oil and keratin to add shine, reduce frizz, and protect against heat damage. Promotes healthy-looking, silky smooth hair.",
-            "price": Decimal("19.99"),
+            "price": Decimal("149.99"),
         },
         {
             "name": "Geometry Sunscreen SPF 50",
             "slug": "geometry-sunscreen-facial-cream",
             "description": "Broad-spectrum SPF 50 sunscreen offering superior protection against UVA/UVB rays. Non-greasy, fast-absorbing formula suitable for all skin types, leaving no white cast.",
-            "price": Decimal("24.99"),
+            "price": Decimal("99.99"),
         },
     ],
     "facial-care": [
@@ -72,7 +72,7 @@ for brand_slug, products in products_by_brand.items():
         brand = Brand.objects.get(slug=brand_slug)
         for product in products:
             try:
-                obj, created = Product.objects.get_or_create(
+                obj, created = Product.objects.update_or_create(
                     brand=brand,
                     slug=product["slug"],
                     defaults={

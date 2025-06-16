@@ -1,15 +1,19 @@
 # core/urls.py
+
 from django.urls import path, include
-from django.views.generic import TemplateView
-from core.views.checkout import checkout_view  # ✅ import your new view
+from core.views.checkout import checkout_view
 from core.views.contact import contact_page
+from .views import process_payment
+from core.views.orders import order_detail_view
+
+app_name = "core"
 
 urlpatterns = [
-    # other includes like brands, etc.
     path('products/', include('core.urls.products')),
     path('auth/', include('core.urls.auth', namespace='auth')),
     path("cart/", include("core.urls.cart")),
-    path("checkout/", checkout_view, name="checkout"),  # ✅ define the route with name
+    path("checkout/", checkout_view, name="checkout"),
     path("contact/", contact_page, name="contact"),
-
+    path("process-payment/", process_payment, name="process_payment"),
+    path('orders/<int:order_id>/', order_detail_view, name='order_detail'),  # ✅ THIS MUST BE PRESENT
 ]
