@@ -1,6 +1,6 @@
 {% extends "core/base.html" %}
 {% load math_filters %}
-
+{% include "core/_checkout_progress.html" with step=3 %}
 {% block title %}Payment Successful{% endblock %}
 
 {% block content %}
@@ -34,14 +34,14 @@
           <tr>
             <td class="px-4 py-2 border">{{ item.product.name }}</td>
             <td class="px-4 py-2 border">{{ item.quantity }}</td>
-            <td class="px-4 py-2 border">₹{{ item.price|floatformat:2 }}</td>
-            <td class="px-4 py-2 border">₹{{ item.price|mul:item.quantity|floatformat:2 }}</td>
+            <td class="px-4 py-2 border">฿{{ item.price|floatformat:2 }}</td>
+            <td class="px-4 py-2 border">฿{{ item.price|mul:item.quantity|floatformat:2 }}</td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
 
-    <p class="text-base font-semibold">Total Paid: ₹{{ order.total_price|floatformat:2 }}</p>
+    <p class="text-base font-semibold">Total Paid: ฿{{ order.total_price|floatformat:2 }}</p>
 
     <a href="/" class="inline-block mt-6 bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700 transition">
       Continue Shopping
