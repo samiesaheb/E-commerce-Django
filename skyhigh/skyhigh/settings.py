@@ -73,7 +73,6 @@ EMAIL_HOST = 'smtp.gmail.com'  # e.g. smtp.gmail.com
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'samie@skyhigh.co.th'
-EMAIL_HOST_PASSWORD = 'Sky.High@8181'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 MIDDLEWARE = [
