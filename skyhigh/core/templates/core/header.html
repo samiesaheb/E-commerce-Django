@@ -65,7 +65,7 @@
 
         <div x-data="{ query: '', results: [], show: false, fetchResults() {
           if (this.query.length > 1) {
-            fetch(`/products/autocomplete/?q=${this.query}`)
+            fetch(/products/autocomplete/?q=${this.query})
               .then(res => res.json())
               .then(data => { this.results = data; this.show = true; });
           } else {
@@ -86,7 +86,7 @@
           <ul x-show="show" x-transition @click.outside="show = false" class="absolute w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-50">
             <template x-for="item in results" :key="item.id">
               <li class="px-4 py-2 hover:bg-gray-100 text-sm">
-                <a :href="`/products/${item.slug}/`" x-text="item.name" class="block text-gray-700"></a>
+                <a :href="/products/${item.slug}/" x-text="item.name" class="block text-gray-700"></a>
               </li>
             </template>
           </ul>
