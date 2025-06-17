@@ -42,7 +42,7 @@
            class="flex items-center px-4 py-2 text-sm text-gray-700 space-x-3"
            :class="{ 'text-red-600': index === activeIndex }"
            @mouseover="activeIndex = index">
-          <img :src="item.image_url" alt="" class="w-10 h-10 object-cover rounded" />
+          <img :src="item.image_url" alt="" class="w-10 h-10 object-cover rounded" loading="lazy" />
           <span x-html="highlightMatch(item.name)"></span>
         </a>
       </li>

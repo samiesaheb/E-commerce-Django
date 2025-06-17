@@ -1,0 +1,25 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Our Services{% endblock %}
+
+{% block content %}
+<div class="max-w-screen-xl mx-auto px-4 py-12">
+  <h1 class="text-3xl font-bold text-center text-red-600 mb-10">Our Services</h1>
+
+  <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+    {% for service in services %}
+      <a href="{% url 'services:service_detail' service.slug %}"
+         class="block border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition p-6 bg-white hover:border-red-500 hover:ring-2 hover:ring-red-100 group">
+        <h2 class="text-xl font-semibold text-gray-800 group-hover:text-red-600 mb-2">
+          {{ service.title }}
+        </h2>
+        <p class="text-gray-600 text-sm line-clamp-4 mb-4">
+          {{ service.description|truncatewords:30 }}
+        </p>
+        <span class="text-sm text-red-500 font-medium group-hover:underline">Read More →</span>
+      </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

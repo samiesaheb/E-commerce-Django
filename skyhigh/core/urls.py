@@ -4,6 +4,7 @@ from core.views.checkout import checkout_view
 from core.views.contact import contact_page
 from core.views.orders import order_detail_view
 from core.views.static_pages import privacy_policy_view, terms_and_conditions_view
+from core.views.services import services_view, service_detail_view
 from django.urls import include, path
 from .views import process_payment
 
@@ -23,4 +24,6 @@ urlpatterns = [
     path(
         "terms-and-conditions/", terms_and_conditions_view, name="terms_and_conditions"
     ),
+    path("services/", services_view, name="services"),
+    path("<slug:slug>/", service_detail_view, name="service_detail"),
 ]
