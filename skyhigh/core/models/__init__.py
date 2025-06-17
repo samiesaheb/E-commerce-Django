@@ -1,4 +1,12 @@
 from .brand import Brand
-from .product import Product
 from .cart_item import CartItem
-from .order import Order, OrderItem  # ✅ Add this
+from .order import Order, OrderItem
+from .product import Product
+
+__all__ = [
+    "Brand",
+    "Product",
+    "CartItem",
+    "Order",
+    "OrderItem",
+]
