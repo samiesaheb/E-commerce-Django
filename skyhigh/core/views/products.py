@@ -2,6 +2,8 @@ from core.models import Product
 from django.db.models import Q  # For search functionality
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
+from django.templatetags.static import static
+
 
 
 # Detail View: Shows a single product
@@ -54,7 +56,18 @@ def product_autocomplete(request):
     query = request.GET.get("q", "")
     if query:
         products = Product.objects.filter(name__icontains=query)[:8]
-        suggestions = [{"name": p.name, "slug": p.slug} for p in products]
+        results = []
+        for p in products:
+            # Derive folder from brand slug (matches your static subfolder structure)
+            folder = p.brand.slug.replace('-', '')
+            image_path = f"images/{folder}/{p.image}" if p.image else "images/placeholder.jpg"
+
+            results.append({
+                "name": p.name,
+                "slug": p.slug,
+                "image_url": static(image_path),
+            })
     else:
-        suggestions = []
-    return JsonResponse(suggestions, safe=False)
+        results = []
+
+    return JsonResponse({"results": results})
