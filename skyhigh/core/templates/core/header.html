@@ -1,61 +1,63 @@
-<header x-data="{ open: false, lastScroll: 0, hidden: false, showBrands: false }" x-init="
+<!-- header.html -->
+<header x-data="{ open: false, showAuthSidebar: false, lastScroll: 0, hidden: false, showBrands: false }"
+        x-init="
   window.addEventListener('scroll', () => {
     const current = window.pageYOffset;
     hidden = current > lastScroll && current > 100;
     lastScroll = current;
   });
-" :class="{ 'translate-y-[-100%]': hidden }" class="bg-white shadow-md sticky top-0 z-50 transition-transform duration-300">
+"
+        :class="{ 'translate-y-[-100%]': hidden }"
+        class="bg-white shadow-md sticky top-0 z-50 transition-transform duration-300">
   <div class="max-w-screen-2xl mx-auto px-8 py-6 relative">
     <div class="flex items-center justify-between">
 
       <!-- Left: Hamburger Menu -->
       <div>
         <button @click="open = !open" class="text-gray-700 hover:text-red-600 focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+               stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
         </button>
       </div>
 
-      <!-- Sidebar Navigation -->
-      <div 
-        x-show="open" 
-        x-transition:enter="transition ease-out duration-300" 
-        x-transition:enter-start="-translate-x-full opacity-0" 
-        x-transition:enter-end="translate-x-0 opacity-100" 
-        x-transition:leave="transition ease-in duration-200" 
-        x-transition:leave-start="translate-x-0 opacity-100" 
-        x-transition:leave-end="-translate-x-full opacity-0" 
-        class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-4 overflow-y-auto transform" 
-        @click.outside="open = false"
-      >
-        <button @click="open = false" class="text-gray-700 hover:text-red-600 focus:outline-none mb-4">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      <!-- Sidebar Navigation (Left) -->
+      <div x-show="open"
+           x-transition
+           class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 p-4 overflow-y-auto transform"
+           @click.outside="open = false">
+        <button @click="open = false" class="absolute top-6 left-8 text-gray-700 hover:text-red-600 focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+               stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"/>
           </svg>
         </button>
 
-        <nav class="space-y-2">
-          <a href="/about/" class="block px-3 py-2 text-sm hover:bg-gray-100 hover:text-red-600 rounded">About</a>
-
+        <nav class="space-y-2 mt-16">
+          <a href="/about/" class="block px-3 py-2 text-lg hover:bg-gray-100 hover:text-red-600 rounded">About</a>
           <!-- Accordion -->
           <div>
-            <button @click="showBrands = !showBrands" class="w-full flex justify-between items-center px-3 py-2 text-sm hover:bg-gray-100 hover:text-red-600 rounded focus:outline-none">
+            <button @click="showBrands = !showBrands"
+                    class="w-full flex justify-between items-center px-3 py-2 text-lg hover:bg-gray-100 hover:text-red-600 rounded focus:outline-none">
               <span>Brands</span>
-              <svg :class="{ 'rotate-180': showBrands }" class="w-4 h-4 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              <svg :class="{ 'rotate-180': showBrands }" class="w-4 h-4 transform transition-transform"
+                   fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 9l-7 7-7-7"/>
               </svg>
             </button>
 
             <div x-show="showBrands" x-transition class="ml-4 mt-1 pl-2 border-l border-gray-200 space-y-1">
-              <a href="/brands/geometry/" class="block px-3 py-1 text-sm hover:bg-gray-100 hover:text-red-600">Geometry</a>
-              <a href="/brands/facial-care/" class="block px-3 py-1 text-sm hover:bg-gray-100 hover:text-red-600">Facial Care</a>
-              <a href="/brands/body-and-skin-care/" class="block px-3 py-1 text-sm hover:bg-gray-100 hover:text-red-600">Body & Skin Care</a>
-              <a href="/brands/hair-care/" class="block px-3 py-1 text-sm hover:bg-gray-100 hover:text-red-600">Hair Care</a>
+              <a href="/brands/geometry/" class="block px-3 py-1 text-base hover:bg-gray-100 hover:text-red-600">Geometry</a>
+              <a href="/brands/facial-care/" class="block px-3 py-1 text-base hover:bg-gray-100 hover:text-red-600">Facial Care</a>
+              <a href="/brands/body-and-skin-care/" class="block px-3 py-1 text-base hover:bg-gray-100 hover:text-red-600">Body & Skin Care</a>
+              <a href="/brands/hair-care/" class="block px-3 py-1 text-base hover:bg-gray-100 hover:text-red-600">Hair Care</a>
             </div>
           </div>
-
-          <a href="/contact/" class="block px-3 py-2 text-sm hover:bg-gray-100 hover:text-red-600 rounded">Contact</a>
+          <a href="/contact/" class="block px-3 py-2 text-lg hover:bg-gray-100 hover:text-red-600 rounded">Contact</a>
         </nav>
       </div>
 
@@ -63,41 +65,65 @@
       <div class="absolute left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center max-w-xl w-full space-y-1 text-center">
         <a href="/" class="text-xl font-extrabold text-red-600">Sky High</a>
 
-        <div x-data="{ query: '', results: [], show: false, fetchResults() {
-          if (this.query.length > 1) {
-            fetch(/products/autocomplete/?q=${this.query})
-              .then(res => res.json())
-              .then(data => { this.results = data; this.show = true; });
-          } else {
-            this.results = []; this.show = false;
+        <!-- Live Search -->
+        <div x-data="{
+          query: '',
+          results: [],
+          show: false,
+          fetchResults() {
+            if (this.query.length > 1) {
+              fetch(`/products/autocomplete/?q=${this.query}`)
+                .then(res => res.json())
+                .then(data => {
+                  this.results = data;
+                  this.show = data.length > 0;
+                });
+            } else {
+              this.results = [];
+              this.show = false;
+            }
           }
-        }}" class="relative w-full">
+        }" class="relative w-full">
           <form action="{% url 'products:search' %}" method="GET" class="w-full">
             <div class="flex items-center rounded-full border border-gray-300 bg-gray-50 shadow-sm focus-within:ring-2 focus-within:ring-red-500 transition">
-              <input type="text" name="q" placeholder="Search products..." x-model="query" x-on:input.debounce.300ms="fetchResults" class="flex-grow pl-4 py-2 bg-transparent text-sm placeholder-gray-400 focus:outline-none" autocomplete="off" />
+              <input type="text" name="q" placeholder="Find on skyhigh-inter.com"
+                     x-model="query"
+                     x-on:input.debounce.300ms="fetchResults"
+                     class="flex-grow pl-4 py-2 bg-transparent text-sm placeholder-gray-500 focus:outline-none"
+                     autocomplete="off" />
               <button type="submit" class="px-3 text-gray-500 hover:text-red-600">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                     stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"/>
                 </svg>
               </button>
             </div>
           </form>
 
-          <ul x-show="show" x-transition @click.outside="show = false" class="absolute w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-50">
+          <!-- Autocomplete dropdown -->
+          <ul x-show="show" x-transition @click.outside="show = false"
+              class="absolute w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-50">
             <template x-for="item in results" :key="item.id">
               <li class="px-4 py-2 hover:bg-gray-100 text-sm">
-                <a :href="/products/${item.slug}/" x-text="item.name" class="block text-gray-700"></a>
+                <a :href="`/products/${item.slug}/`" x-text="item.name" class="block text-gray-700"></a>
               </li>
             </template>
           </ul>
         </div>
       </div>
 
-      <!-- Right: Cart + Auth -->
-      <div class="flex-1 flex justify-end space-x-4 text-sm font-medium text-gray-700 items-center" x-data="{ count: {{ cart_item_count|default:0 }} }" x-init="window.addEventListener('cart-updated', e => count = e.detail.count)" id="cart-icon">
+      <!-- Right: Cart + Profile -->
+      <div class="flex-1 flex justify-end space-x-4 text-sm font-medium text-gray-700 items-center"
+           x-data="{ count: {{ cart_item_count|default:0 }} }"
+           x-init="window.addEventListener('cart-updated', e => count = e.detail.count)"
+           id="cart-icon">
+
         <a href="{% url 'cart:show' %}" class="relative hover:text-red-600 transition-colors duration-200" aria-label="View Cart">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 10-8 0v4M5 11h14l-1.5 9h-11L5 11z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+               stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                  d="M16 11V7a4 4 0 10-8 0v4M5 11h14l-1.5 9h-11L5 11z"/>
           </svg>
           <template x-if="count > 0">
             <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-semibold rounded-full h-5 w-5 flex items-center justify-center shadow">
@@ -106,18 +132,40 @@
           </template>
         </a>
 
-        {% if user.is_authenticated %}
-          <form method="POST" action="{% url 'account_logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="hover:text-red-600 bg-transparent border-none p-0 m-0">Logout</button>
-          </form>
-          <a href="{% url 'auth:profile' %}" class="hover:text-red-600">My Profile</a>
-        {% else %}
-          <a href="{% url 'auth:login' %}" class="hover:text-red-600">Login</a>
-          <a href="{% url 'auth:signup' %}" class="hover:text-red-600">Sign up</a>
-        {% endif %}
-      </div>
+        <button @click="showAuthSidebar = true" class="hover:text-red-600 focus:outline-none" aria-label="User Profile">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 hover:text-red-600"
+               fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5.5 20a8.38 8.38 0 0 1 13 0M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+          </svg>
+        </button>
 
+        <!-- Right Sidebar -->
+        <div x-show="showAuthSidebar" x-transition
+             class="fixed top-0 right-0 w-64 h-full bg-white shadow-lg z-50 p-4 transform overflow-y-auto"
+             @click.outside="showAuthSidebar = false">
+          <button @click="showAuthSidebar = false" class="absolute top-6 right-6 text-gray-700 hover:text-red-600 focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                 stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+
+          <div class="mt-16 space-y-4">
+            {% if user.is_authenticated %}
+              <a href="{% url 'auth:profile' %}" class="block px-4 py-2 text-lg hover:bg-gray-100 hover:text-red-600 rounded">My Profile</a>
+              <form method="POST" action="{% url 'account_logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="w-full text-left px-4 py-2 text-lg hover:bg-gray-100 hover:text-red-600 rounded">Logout</button>
+              </form>
+            {% else %}
+              <a href="{% url 'auth:login' %}" class="block px-4 py-2 text-lg hover:bg-gray-100 hover:text-red-600 rounded">Login</a>
+              <a href="{% url 'auth:signup' %}" class="block px-4 py-2 text-lg hover:bg-gray-100 hover:text-red-600 rounded">Sign Up</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </header>

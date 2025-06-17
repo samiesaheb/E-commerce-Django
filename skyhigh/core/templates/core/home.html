@@ -1,19 +1,21 @@
 {% extends "core/base.html" %}
 {% load static %}
 
-<title>{% block title %}Sky High{% endblock %}</title>
+{% block title %}Sky High{% endblock %}
 
 {% block content %}
-<!-- Hero Section without background image -->
-<section class="relative h-screen flex items-center justify-center text-center bg-white" data-aos="fade-in">
-  <div class="text-black px-4 max-w-2xl" data-aos="zoom-in" data-aos-delay="200">
+<!-- Hero Section with Background Image -->
+<section class="relative h-screen flex items-center justify-center text-center bg-cover bg-center bg-no-repeat text-white"
+         style="background-image: url('{% static 'images/skyhigh-hero.jpg' %}');"
+         data-aos="fade-in">
+  <div class="bg-black bg-opacity-50 p-8 rounded-md" data-aos="zoom-in" data-aos-delay="200">
     <h1 class="text-6xl md:text-8xl font-light mb-8 tracking-widest uppercase leading-tight">
       Concept to Creation
     </h1>
     <p class="text-xl md:text-2xl font-light mb-10">
       Crafting beauty through innovation, science, and elegance.
     </p>
-    <a href="/brands/" class="inline-block bg-black text-white text-base tracking-widest font-semibold px-10 py-4 rounded-full shadow-md hover:bg-gray-900 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+    <a href="/brands/" class="inline-block bg-white text-black text-base tracking-widest font-semibold px-10 py-4 rounded-full shadow-md hover:bg-gray-200 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
       Explore Our Brands
     </a>
   </div>
