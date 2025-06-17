@@ -1,9 +1,9 @@
-from django.contrib import admin
 from core.models.brand import Brand
-from core.models.product import Product
 from core.models.order import Order  # Add this if managing orders
-from django.contrib.auth.models import User
+from core.models.product import Product
+from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
 
 @admin.register(Brand)
@@ -30,6 +30,8 @@ class OrderAdmin(admin.ModelAdmin):
 
 # Optional: Re-register User with customization
 admin.site.unregister(User)
+
+
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
     list_display = ("username", "email", "first_name", "last_name", "is_staff")

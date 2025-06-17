@@ -1,17 +1,16 @@
 # core/views/checkout.py
 
-from django.shortcuts import render, redirect
-from core.models import Product, CartItem, Order, OrderItem
-from typing import Dict, List
-from django.db.models import QuerySet
-from typing import cast
+from typing import Dict, List, cast
+
 import stripe
+from core.models import Order, OrderItem, Product
 from django.conf import settings
 from django.core.mail import send_mail
-from django.http import JsonResponse, HttpResponseBadRequest
-from django.views.decorators.csrf import csrf_exempt
+from django.db.models import QuerySet
+from django.shortcuts import redirect, render
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 def checkout_view(request):
     cart: Dict[str, int] = request.session.get("cart", {})
@@ -27,16 +26,12 @@ def checkout_view(request):
         quantity = cart.get(product_id_str, 0)
         if product.price:
             total += product.price * quantity
-        cart_items.append({
-            "product": product,
-            "quantity": quantity,
-            "id": product.id
-        })
+        cart_items.append({"product": product, "quantity": quantity, "id": product.id})
 
-    return render(request, "core/checkout.html", {
-        "cart_items": cart_items,
-        "total": total
-    })
+    return render(
+        request, "core/checkout.html", {"cart_items": cart_items, "total": total}
+    )
+
 
 def process_payment(request):
     if request.method == "POST":
@@ -50,7 +45,9 @@ def process_payment(request):
 
         cart = request.session.get("cart", {})
         if not cart:
-            return render(request, "core/payment_failed.html", {"error": "Your cart is empty."})
+            return render(
+                request, "core/payment_failed.html", {"error": "Your cart is empty."}
+            )
 
         try:
             # Calculate total
@@ -63,10 +60,7 @@ def process_payment(request):
                 currency="inr",
                 payment_method=payment_method_id,
                 confirm=True,
-                automatic_payment_methods={
-                    "enabled": True,
-                    "allow_redirects": "never"
-                }
+                automatic_payment_methods={"enabled": True, "allow_redirects": "never"},
             )
 
             # ✅ Save order
@@ -79,16 +73,13 @@ def process_payment(request):
                 postal_code=postal_code,
                 country=country,
                 total_price=total,
-                stripe_payment_intent=intent.id
+                stripe_payment_intent=intent.id,
             )
 
             for product in products:
                 quantity = cart[str(product.id)]
                 OrderItem.objects.create(
-                    order=order,
-                    product=product,
-                    quantity=quantity,
-                    price=product.price
+                    order=order, product=product, quantity=quantity, price=product.price
                 )
 
             # ✅ Clear the cart
