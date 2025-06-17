@@ -4,39 +4,64 @@
 {% block title %}Sky High{% endblock %}
 
 {% block content %}
-<!-- Hero Section with Background Image -->
-<section class="relative h-screen flex items-center justify-center text-center bg-cover bg-center bg-no-repeat text-white"
-         style="background-image: url('{% static 'images/skyhigh-hero.jpg' %}');"
+<!-- Hero Section -->
+<section class="relative h-screen text-white flex items-center justify-center bg-black"
          data-aos="fade-in">
-  <div class="bg-black bg-opacity-50 p-8 rounded-md" data-aos="zoom-in" data-aos-delay="200">
-    <h1 class="text-6xl md:text-8xl font-light mb-8 tracking-widest uppercase leading-tight">
+  <div class="bg-opacity-50 backdrop-blur-sm p-10 sm:p-16 rounded-xl text-center max-w-4xl">
+    <h1 class="text-5xl sm:text-7xl font-light tracking-wide leading-tight uppercase mb-6">
       Concept to Creation
     </h1>
-    <p class="text-xl md:text-2xl font-light mb-10">
+    <p class="text-lg sm:text-2xl font-light mb-8">
       Crafting beauty through innovation, science, and elegance.
     </p>
-    <a href="/brands/" class="inline-block bg-white text-black text-base tracking-widest font-semibold px-10 py-4 rounded-full shadow-md hover:bg-gray-200 transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+    <a href="/brands/"
+       class="inline-block bg-red-600 text-white px-10 py-4 rounded-full font-semibold tracking-wide shadow hover:bg-red-700 transition duration-300">
       Explore Our Brands
     </a>
   </div>
 </section>
 
+
 <!-- About Section -->
 <section class="py-24 bg-white" data-aos="fade-up">
   <div class="container mx-auto px-6 text-center max-w-3xl">
-    <h2 class="text-4xl font-light uppercase tracking-wider mb-6" data-aos="fade-up" data-aos-delay="100">Elevating Cosmetic Standards</h2>
-    <p class="text-gray-700 text-lg leading-relaxed font-light" data-aos="fade-up" data-aos-delay="200">
-      At Sky High International, we blend modern science with timeless ingredients to deliver private-label skincare, body care, and haircare solutions of uncompromising quality. Trusted by global luxury brands.
+    <h2 class="text-4xl font-light uppercase tracking-wider mb-6 text-gray-900" data-aos-delay="100">Elevating Cosmetic Standards</h2>
+    <p class="text-gray-700 text-lg leading-relaxed font-light" data-aos-delay="200">
+      At Sky High International, we merge modern science with luxurious ingredients to craft exceptional private-label skincare, haircare, and body care products. Trusted by discerning brands worldwide, we transform your ideas into reality.
     </p>
   </div>
 </section>
 
+<!-- Product Promise Section (No Images) -->
+<section class="bg-gray-50 py-24" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10 text-center">
+    <div data-aos-delay="100">
+      <h3 class="text-xl font-medium text-gray-800 mb-2 uppercase">Innovative Formulation</h3>
+      <p class="text-gray-600 text-sm font-light leading-relaxed">
+        Our in-house R&D team crafts formulas that deliver results using cutting-edge science and clean ingredients.
+      </p>
+    </div>
+    <div data-aos-delay="200">
+      <h3 class="text-xl font-medium text-gray-800 mb-2 uppercase">Sustainable & Safe</h3>
+      <p class="text-gray-600 text-sm font-light leading-relaxed">
+        We prioritize sustainability and non-toxic materials, ensuring products are safe for people and the planet.
+      </p>
+    </div>
+    <div data-aos-delay="300">
+      <h3 class="text-xl font-medium text-gray-800 mb-2 uppercase">Global Reach</h3>
+      <p class="text-gray-600 text-sm font-light leading-relaxed">
+        From Thailand to the GCC and Africa, Sky High powers the success of brands across continents.
+      </p>
+    </div>
+  </div>
+</section>
+
 <!-- Call-to-Action Section -->
-<section class="py-24 bg-gray-50" data-aos="fade-up">
-  <div class="container mx-auto px-6 text-center">
-    <h2 class="text-3xl font-light uppercase tracking-wide mb-4" data-aos="fade-up" data-aos-delay="100">Your Brand, Our Expertise</h2>
-    <p class="mb-6 text-gray-600 text-lg font-light" data-aos="fade-up" data-aos-delay="200">Partner with us to create elegant, high-performance cosmetics that reflect your vision.</p>
-    <a href="/contact/" class="bg-black text-white tracking-wide px-8 py-3 rounded-full shadow hover:bg-gray-900 transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+<section class="py-24 bg-black text-white text-center" data-aos="fade-up">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl sm:text-4xl font-light uppercase tracking-wide mb-6">Your Brand, Our Expertise</h2>
+    <p class="text-lg font-light mb-8">Partner with Sky High to launch elegant, high-performance cosmetics that reflect your unique identity.</p>
+    <a href="/contact/" class="bg-white text-black px-8 py-3 rounded-full font-medium tracking-wide shadow hover:bg-gray-200 transition-all duration-300">
       Contact Us
     </a>
   </div>

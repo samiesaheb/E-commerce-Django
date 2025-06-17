@@ -5,7 +5,6 @@ from core.views.contact import contact_page
 from core.views.orders import order_detail_view
 from core.views.static_pages import privacy_policy_view, terms_and_conditions_view
 from django.urls import include, path
-
 from .views import process_payment
 
 app_name = "core"
