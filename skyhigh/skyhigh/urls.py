@@ -18,6 +18,8 @@ Including another URLconf
 from core.views.checkout import checkout_view, process_payment
 from django.contrib import admin
 from django.urls import include, path
+from core.views.services import services_view
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -30,4 +32,6 @@ urlpatterns = [
     path("cart/", include("core.urls.cart", namespace="cart")),
     path("checkout/", checkout_view, name="checkout"),
     path("process-payment/", process_payment, name="process-payment"),
+    path("services/", services_view, name="services"),
+
 ]
