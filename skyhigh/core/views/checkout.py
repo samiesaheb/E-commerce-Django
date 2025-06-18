@@ -29,7 +29,13 @@ def checkout_view(request):
         cart_items.append({"product": product, "quantity": quantity, "id": product.id})
 
     return render(
-        request, "core/checkout.html", {"cart_items": cart_items, "total": total}
+        request,
+        "core/checkout.html",
+        {
+            "cart_items": cart_items,
+            "total": total,
+            "stripe_public_key": settings.STRIPE_PUBLISHABLE_KEY,  # ✅ Add this line
+        },
     )
 
 
@@ -57,7 +63,7 @@ def process_payment(request):
             # Create Stripe PaymentIntent
             intent = stripe.PaymentIntent.create(
                 amount=int(total * 100),  # amount in paisa
-                currency="inr",
+                currency="thb",
                 payment_method=payment_method_id,
                 confirm=True,
                 automatic_payment_methods={"enabled": True, "allow_redirects": "never"},
@@ -92,7 +98,7 @@ def process_payment(request):
                     f"Dear {order.full_name},\n\n"
                     f"Thank you for your purchase at Sky High International!\n\n"
                     f"Order ID: #{order.id}\n"
-                    f"Total: ₹{order.total_price}\n\n"
+                    f"Total: ฿{order.total_price}\n\n"
                     f"We're processing your order and will notify you once it's shipped.\n\n"
                     f"Shipping Address:\n{order.address}, {order.city}, {order.postal_code}, {order.country}\n\n"
                     f"Warm regards,\nSky High Team"
