@@ -26,7 +26,7 @@
         <td class="px-4 py-2 border">{{ item.product.name }}</td>
         <td class="px-4 py-2 border">{{ item.quantity }}</td>
         <td class="px-4 py-2 border">฿{{ item.price|floatformat:2 }}</td>
-        <td class="px-4 py-2 border">฿{{ item.price|floatformat:2|floatformat:"2" }} × {{ item.quantity }} = ฿{{ item.price|floatformat:2|floatformat:"2"|add:item.quantity|floatformat:"2" }}</td>
+        <td class="px-4 py-2 border">฿{{ item.subtotal|floatformat:2 }}</td>
       </tr>
       {% endfor %}
     </tbody>
