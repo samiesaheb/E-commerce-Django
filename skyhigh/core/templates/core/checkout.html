@@ -102,8 +102,10 @@
           const amountInput = document.createElement("input");
           amountInput.setAttribute("type", "hidden");
           amountInput.setAttribute("name", "amount");
-          amountInput.setAttribute("value", "{{ total|floatformat:2 }}");
+          amountInput.setAttribute("value", "{{ total|floatformat:0 }}");
           form.appendChild(amountInput);
+          form.querySelector("button[type='submit']").disabled = true;
+          form.querySelector("button[type='submit']").textContent = "Processing...";
 
           form.submit();
         }

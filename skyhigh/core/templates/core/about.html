@@ -4,40 +4,52 @@
 {% block title %}About - Sky High{% endblock %}
 
 {% block content %}
-<section class="relative bg-cover bg-center h-72" style="background-image: url('{% static 'images/about-banner.jpg' %}');">
+<!-- Hero Banner -->
+<section class="relative bg-cover bg-center h-72 sm:h-96" style="background-image: url('{% static 'images/about-banner.jpg' %}');">
   <div class="h-full w-full bg-black bg-opacity-60 flex items-center justify-center">
-    <h1 class="text-white text-4xl md:text-5xl font-bold tracking-wide">About Sky High</h1>
+    <h1 class="text-white text-4xl sm:text-5xl font-extrabold tracking-wide uppercase text-center">About Sky High</h1>
   </div>
 </section>
 
-<section class="py-16 bg-white">
-  <div class="container mx-auto px-6 max-w-4xl">
-    <h2 class="text-3xl font-semibold text-center mb-6">We Bring the Best to Everything We Touch</h2>
-    <p class="text-gray-700 text-lg mb-6 text-center">
-      Established in 2000, Sky High International Co., Ltd. is a private label cosmetic manufacturer specializing in skin, body, and hair care solutions. We are committed to creating safe, high-quality, and effective products that meet international standards while staying true to our customer-focused philosophy: <strong>"You need it? We make it!"</strong>
+<!-- Introduction -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6 max-w-5xl text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">We Bring the Best to Everything We Touch</h2>
+    <p class="text-lg text-gray-700 leading-relaxed">
+      Founded in 2000, <strong>Sky High International Co., Ltd.</strong> is a trusted private label (OEM) cosmetics manufacturer offering premium skin, body, and hair care solutions. Our mission is rooted in crafting products with precision, purity, and purpose—delivering what our clients envision with our promise:<br>
+      <span class="italic font-medium text-red-600 block mt-2">“You need it? We make it!”</span>
     </p>
+  </div>
+</section>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
-      <div>
-        <h3 class="text-xl font-semibold mb-3">🌍 Vision</h3>
-        <p class="text-gray-700 text-base">
-          To develop innovative, high-quality, and environmentally friendly cosmetic products that build customer trust, expand global reach, and enhance market reputation.
-        </p>
-      </div>
-      <div>
-        <h3 class="text-xl font-semibold mb-3">🎯 Mission</h3>
-        <p class="text-gray-700 text-base">
-          To ensure the highest quality in a competitive market by sourcing top-grade ingredients and formulating from proven, safe recipes—delivering value with integrity and excellence.
-        </p>
-      </div>
-    </div>
-
-    <div class="mt-12">
-      <h3 class="text-xl font-semibold mb-3">🏭 Facilities & Team</h3>
-      <p class="text-gray-700 text-base">
-        With ISO 9001:2015 certification, a 75-member skilled workforce, and an in-house R&D team, we ensure every product is crafted to meet precise customer needs. Our major markets include GCC and African Union countries, and we proudly market our brands: <strong>Geometry</strong> and <strong>Iffa</strong>.
+<!-- Vision & Mission -->
+<section class="bg-gray-50 py-16">
+  <div class="container mx-auto px-6 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div>
+      <h3 class="text-2xl font-semibold text-gray-800 mb-3">🌍 Our Vision</h3>
+      <p class="text-gray-700 leading-relaxed">
+        To develop innovative, high-quality, and environmentally friendly cosmetic products that build customer trust, enhance our market reputation, and expand our global reach.
       </p>
     </div>
+    <div>
+      <h3 class="text-2xl font-semibold text-gray-800 mb-3">🎯 Our Mission</h3>
+      <p class="text-gray-700 leading-relaxed">
+        To maintain the highest quality standards by sourcing premium ingredients, formulating with care, and operating with integrity—ensuring safety, satisfaction, and value in every product.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Facilities & Reach -->
+<section class="bg-white py-20">
+  <div class="container mx-auto px-6 max-w-5xl">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-4">🏭 Facilities & Team</h3>
+    <p class="text-gray-700 leading-relaxed text-base">
+      Operating under ISO 9001:2015 certification, our facility houses a talented team of 75 employees, including a dedicated in-house R&D department. From concept to final formulation, we prioritize customer needs and compliance with both national and international standards.
+    </p>
+    <p class="text-gray-700 leading-relaxed text-base mt-4">
+      We proudly serve clients across the GCC and African Union markets, while also nurturing our own brands: <strong>Geometry</strong> and <strong>Iffa</strong>—crafted to reflect our values of quality, care, and innovation.
+    </p>
   </div>
 </section>
 {% endblock %}
