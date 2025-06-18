@@ -1,11 +1,13 @@
-<div class="flex justify-between items-center text-sm font-semibold mb-6">
-  <div class="flex-1 text-center">
-    <div class="{% if step >= 1 %}text-red-600{% else %}text-gray-400{% endif %}">1. Cart</div>
-  </div>
-  <div class="flex-1 text-center">
-    <div class="{% if step >= 2 %}text-red-600{% else %}text-gray-400{% endif %}">2. Shipping / Payment</div>
-  </div>
-  <div class="flex-1 text-center">
-    <div class="{% if step >= 3 %}text-red-600{% else %}text-gray-400{% endif %}">3. Confirmation</div>
-  </div>
-</div>
+<nav aria-label="Checkout progress">
+  <ol class="flex justify-between items-center text-sm font-semibold mb-6">
+    <li class="flex-1 text-center">
+      <span class="{% if step >= 1 %}text-red-600{% else %}text-gray-400{% endif %}">1. Cart</span>
+    </li>
+    <li class="flex-1 text-center">
+      <span class="{% if step >= 2 %}text-red-600{% else %}text-gray-400{% endif %}">2. Shipping / Payment</span>
+    </li>
+    <li class="flex-1 text-center">
+      <span class="{% if step >= 3 %}text-red-600{% else %}text-gray-400{% endif %}">3. Confirmation</span>
+    </li>
+  </ol>
+</nav>
