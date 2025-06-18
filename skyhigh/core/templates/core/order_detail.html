@@ -2,7 +2,7 @@
 {% block title %}Order #{{ order.id }}{% endblock %}
 
 {% block content %}
-<div class="max-w-3xl mx-auto py-12 px-4">
+<section class="max-w-3xl mx-auto py-12 px-4">
   <h1 class="text-2xl font-bold mb-4">Order #{{ order.id }}</h1>
   <p class="text-sm text-gray-600 mb-4">Placed on {{ order.created_at|date:"M d, Y H:i" }}</p>
 
@@ -33,5 +33,5 @@
   </table>
 
   <p class="text-base font-semibold">Total Paid: ฿{{ order.total_price|floatformat:2 }}</p>
-</div>
+</section>
 {% endblock %}
