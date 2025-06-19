@@ -32,6 +32,6 @@ urlpatterns = [
     path("cart/", include("core.urls.cart", namespace="cart")),
     path("checkout/", checkout_view, name="checkout"),
     path("process-payment/", process_payment, name="process-payment"),
-    path("services/", services_view, name="services"),
+    path("services/", include("core.urls.services", namespace="services")),
 
 ]
