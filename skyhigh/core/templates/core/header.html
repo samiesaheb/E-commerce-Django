@@ -37,7 +37,7 @@ x-init="
   $watch('showSearch', value => {
     if (value) {
       $nextTick(() => {
-        $refs.searchInput && $refs.searchInput.focus();
+        window.dispatchEvent(new Event('search-open'));
       });
     }
   });
@@ -72,7 +72,7 @@ x-init="
 
 
       <!-- Floating Search Bar (centered over logo) -->
-      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-full max-w-2xl px-6 pointer-events-auto"
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-60 w-full max-w-2xl px-6 pointer-events-auto"
           x-show="showSearch"
           @click.outside="showSearch = false"
           x-transition:enter="transition ease-out duration-300"
