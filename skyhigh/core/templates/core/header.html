@@ -49,7 +49,7 @@
            x-init="window.addEventListener('cart-updated', e => count = e.detail.count)">
 
         <!-- Search Icon and Floating Bar -->
-        <div class="relative"
+        <div class="relative flex items-center"
             @mouseenter="showSearch = true; activeDropdown = null"
             @mouseleave="showSearch = false">
           <button class="hover:text-red-600 focus:outline-none" aria-label="Search Products">
@@ -61,7 +61,7 @@
         </div>
 
         <!-- Cart Icon with Dropdown -->
-        <div class="relative" @mouseenter="activeDropdown = 'cart'" @click.outside="activeDropdown = null">
+        <div class="relative flex items-center" @mouseenter="activeDropdown = 'cart'" @click.outside="activeDropdown = null">
           <a href="{% url 'cart:show' %}" class="relative hover:text-red-600 transition" aria-label="View Cart">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 10-8 0v4M5 11h14l-1.5 9h-11L5 11z"/>
@@ -136,7 +136,7 @@
         </div>
 
         <!-- Profile Icon -->
-        <div class="relative" @mouseenter="activeDropdown = 'profile'" @click.outside="activeDropdown = null">
+        <div class="relative flex items-center" @mouseenter="activeDropdown = 'profile'" @click.outside="activeDropdown = null">
           <button class="hover:text-red-600 focus:outline-none" aria-label="User Profile">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.5 20a8.38 8.38 0 0 1 13 0M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
