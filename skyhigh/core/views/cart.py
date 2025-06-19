@@ -5,6 +5,7 @@ from django.db.models import QuerySet
 from django.http import JsonResponse, HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
+import json
 
 
 @require_POST
@@ -82,6 +83,26 @@ def update_quantity(request: HttpRequest, product_id: int) -> HttpResponse:
     cart[str(product_id)] = new_quantity
     request.session["cart"] = cart
     return redirect("cart:show")
+
+# AJAX endpoint to update quantity and return JSON
+@require_POST
+def update_quantity_ajax(request: HttpRequest) -> JsonResponse:
+    try:
+        payload = json.loads(request.body.decode())
+        product_id = int(payload.get("product_id"))
+        quantity = int(payload.get("quantity", 1))
+    except (TypeError, ValueError, json.JSONDecodeError):
+        return JsonResponse({"success": False}, status=400)
+
+    cart = request.session.get("cart", {})
+    if quantity < 1:
+        cart.pop(str(product_id), None)
+    else:
+        cart[str(product_id)] = quantity
+    request.session["cart"] = cart
+    cart_count = sum(cart.values())
+    return JsonResponse({"success": True, "count": cart_count})
+
 
 
 # ✅ NEW: Remove an item from the cart
