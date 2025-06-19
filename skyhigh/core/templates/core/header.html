@@ -105,7 +105,7 @@
                x-transition:leave="transition ease-in duration-150"
                x-transition:leave-start="opacity-100 translate-y-0"
                x-transition:leave-end="opacity-0 -translate-y-1"
-               class="absolute right-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4 space-y-2 text-sm"
+               class="absolute right-0 top-full mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4 space-y-2 text-sm"
                x-cloak>
             <template x-for="item in items" :key="item.id">
               <div class="flex justify-between items-start space-x-2">
@@ -149,7 +149,7 @@
               x-transition:leave="transition ease-in duration-150"
               x-transition:leave-start="opacity-100 translate-y-0"
               x-transition:leave-end="opacity-0 -translate-y-1"
-              class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4 space-y-2 text-sm"
+              class="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4 space-y-2 text-sm"
               x-cloak>
             {% if user.is_authenticated %}
               <a href="{% url 'auth:profile' %}" class="block px-3 py-1 hover:bg-gray-100 rounded">My Profile</a>
