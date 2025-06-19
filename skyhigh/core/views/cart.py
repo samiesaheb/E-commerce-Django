@@ -45,7 +45,7 @@ def view_cart(request):
             total += product.price * quantity
         cart_items.append({"product": product, "quantity": quantity, "id": product.id})
 
-    return render(request, "core/cart.html", {"cart_items": cart_items, "total": total})
+    return render(request, "core/cart.html", {"cart_page_items": cart_items, "total": total})
 
 
 def increment_item(request, item_id):
