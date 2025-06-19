@@ -3,7 +3,7 @@ A full-featured, modern cosmetics e-commerce site built with Django, Alpine.js, 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 🚀 Features
 --------------------------------------------------------------------------------------------
-- 🛍️ E-commerce Functionality
+🛍️ E-commerce Functionality
 Dynamic Brands & Products
 Dedicated brand pages (e.g. /brands/geometry/)
 
@@ -35,7 +35,7 @@ Bolded matching text only in suggestions
 
 Lazy-loaded product thumbnails
 
-- 💼 Services Section
+💼 Services Section
 Services Overview Page
 Each service with title, short description, and link to detail page
 
@@ -50,7 +50,7 @@ Extended sections:
 
 SEO-friendly slugs (e.g. /services/custom-formulation/)
 
-- 👤 User Authentication
+👤 User Authentication
 Login, Signup, Logout using Django AllAuth
 
 Authentication sidebar with smooth transition animations
@@ -59,7 +59,7 @@ Profile dropdown in header, revealed on hover
 
 Password reset and change flows with 6 styled templates
 
-- 🎨 UI/UX Enhancements
+🎨 UI/UX Enhancements
 Responsive Header
 Sticky and auto-hiding on scroll
 
@@ -88,7 +88,7 @@ Debounced input with clean keyboard support
 
 Click-outside and escape key handling
 
-- 🧱 Architecture & Structure
+🧱 Architecture & Structure
 Modular views (core.views.services, products, auth, cart)
 
 Clean URL namespaces (e.g., services:service_detail)
