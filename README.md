@@ -1,7 +1,4 @@
-from pathlib import Path
-
-# Define the README content
-readme_content = """# 💄 Sky High Cosmetics Website
+# 💄 Sky High Cosmetics Website
 
 A full-featured, modern cosmetics e-commerce site built with Django, Alpine.js, and Tailwind CSS. This platform supports private-label OEM product browsing, brand discovery, advanced services, and dynamic shopping experiences.
 
