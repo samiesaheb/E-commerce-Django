@@ -8,4 +8,6 @@ urlpatterns = [
     path("show/", cart.view_cart, name="show"),
     path("increment/<int:item_id>/", cart.increment_item, name="increment"),
     path("decrement/<int:item_id>/", cart.decrement_item, name="decrement"),
+    path("update/<int:product_id>/", cart.update_quantity, name="update_quantity"),
+    path("remove/<int:product_id>/", cart.remove_from_cart, name="remove"),
 ]

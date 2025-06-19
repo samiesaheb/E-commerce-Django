@@ -2,7 +2,7 @@ from typing import Dict, List, cast
 
 from core.models import Product
 from django.db.models import QuerySet
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpRequest, HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
@@ -21,11 +21,9 @@ def add_to_cart(request, product_id):
     request.session["cart"] = cart
     cart_count = sum(cart.values())
 
-    # Handle AJAX request
     if request.headers.get("x-requested-with") == "XMLHttpRequest":
         return JsonResponse({"success": True, "cart_count": cart_count})
 
-    # Fallback: normal redirect for non-AJAX
     return redirect(request.META.get("HTTP_REFERER", "/"))
 
 
@@ -67,4 +65,29 @@ def decrement_item(request, item_id):
         else:
             del cart[item_id]
         request.session["cart"] = cart
+    return redirect("cart:show")
+
+
+# ✅ NEW: Update quantity to a specific value
+@require_POST
+def update_quantity(request: HttpRequest, product_id: int) -> HttpResponse:
+    try:
+        new_quantity = int(request.POST.get("quantity", 1))
+        if new_quantity < 1:
+            return remove_from_cart(request, product_id)
+    except (TypeError, ValueError):
+        return redirect("cart:show")
+
+    cart = request.session.get("cart", {})
+    cart[str(product_id)] = new_quantity
+    request.session["cart"] = cart
+    return redirect("cart:show")
+
+
+# ✅ NEW: Remove an item from the cart
+@require_POST
+def remove_from_cart(request: HttpRequest, product_id: int) -> HttpResponse:
+    cart = request.session.get("cart", {})
+    cart.pop(str(product_id), None)
+    request.session["cart"] = cart
     return redirect("cart:show")

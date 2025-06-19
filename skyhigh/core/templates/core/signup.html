@@ -1,5 +1,6 @@
 <!-- core/templates/core/signup.html -->
 {% extends "core/base.html" %}
+{% load widget_tweaks %}
 {% block title %}Sign Up{% endblock %}
 
 {% block content %}
@@ -23,7 +24,7 @@
           <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
             {{ field.label }}
           </label>
-          {{ field }}
+          {{ field|add_class:"w-full appearance-none rounded-md px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" }}
           {% if field.errors %}
             <p class="text-sm text-red-500 mt-1">{{ field.errors|join:", " }}</p>
           {% endif %}

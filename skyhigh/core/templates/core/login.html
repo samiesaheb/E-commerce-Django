@@ -1,6 +1,7 @@
 {% extends "core/base.html" %}
 {% block title %}Log In{% endblock %}
 {% load socialaccount %}
+{% load widget_tweaks %}
 
 {% block content %}
 <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -27,7 +28,7 @@
           <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">
             {{ field.label }}
           </label>
-          {{ field }}
+          {{ field|add_class:"w-full appearance-none rounded-md px-3 py-2 border border-gray-300 placeholder-gray-400 text-gray-900 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" }}
           {% if field.errors %}
             <p class="text-sm text-red-500 mt-1">
               {{ field.errors|join:", " }}
