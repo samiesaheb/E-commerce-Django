@@ -1,5 +1,6 @@
 <form action="{% url 'products:search' %}" method="get"
       x-data="liveSearch()" @keydown.escape="clearAll" @click.outside="clearSuggestions"
+      x-on:search-open.window="$nextTick(() => $refs.searchInput.focus())"
       class="relative w-full max-w-2xl mx-auto">
   
   <!-- Search Input -->
