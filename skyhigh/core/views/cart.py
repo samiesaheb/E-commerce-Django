@@ -111,4 +111,9 @@ def remove_from_cart(request: HttpRequest, product_id: int) -> HttpResponse:
     cart = request.session.get("cart", {})
     cart.pop(str(product_id), None)
     request.session["cart"] = cart
+    cart_count = sum(cart.values())
+
+    if request.headers.get("x-requested-with") == "XMLHttpRequest":
+        return JsonResponse({"success": True, "count": cart_count})
+
     return redirect("cart:show")
