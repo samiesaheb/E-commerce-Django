@@ -48,6 +48,13 @@
 
 <!-- AJAX Script for Add to Cart -->
 <script>
+  const currentProduct = {
+    id: {{ product.id }},
+    name: '{{ product.name|escapejs }}',
+    price: {{ product.price }},
+    image: '{% static "images/" %}{{ image_folder }}/{{ product.image }}'
+  };
+
   function addToCart(productId) {
     fetch(`/cart/add/${productId}/`, {
       method: 'POST',
@@ -64,6 +71,7 @@
         window.dispatchEvent(new CustomEvent('cart-updated', {
           detail: { count: data.cart_count }
         }));
+        window.dispatchEvent(new CustomEvent('cart-item-added', { detail: currentProduct }));
         alert("✅ Added to cart!");
       } else {
         alert("❌ Could not add to cart.");
