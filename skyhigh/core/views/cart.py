@@ -2,7 +2,7 @@ from typing import Dict, List, cast
 
 from core.models import Product
 from django.db.models import QuerySet
-from django.http import JsonResponse, HttpRequest, HttpResponse
+from django.http import JsonResponse, HttpRequest, HttpResponse,  HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 import json
@@ -106,14 +106,16 @@ def update_quantity_ajax(request: HttpRequest) -> JsonResponse:
 
 
 # ✅ NEW: Remove an item from the cart
-@require_POST
-def remove_from_cart(request: HttpRequest, product_id: int) -> HttpResponse:
-    cart = request.session.get("cart", {})
-    cart.pop(str(product_id), None)
-    request.session["cart"] = cart
-    cart_count = sum(cart.values())
+def remove_from_cart(request, product_id):
+    if request.method == 'POST':
+        # ... your existing logic to remove item ...
+        cart = request.session.get('cart', {})
+        cart.pop(str(product_id), None)
+        request.session['cart'] = cart
 
-    if request.headers.get("x-requested-with") == "XMLHttpRequest":
-        return JsonResponse({"success": True, "count": cart_count})
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({ 'success': True, 'count': sum(item['quantity'] for item in cart.values()) })
+        else:
+            return HttpResponseRedirect('/cart/show/')  # fallback for regular POST
 
-    return redirect("cart:show")
+    return JsonResponse({ 'error': 'Invalid request method' }, status=400)

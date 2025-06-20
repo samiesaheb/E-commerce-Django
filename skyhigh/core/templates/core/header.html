@@ -148,6 +148,7 @@ x-init="
                       method: 'POST',
                       headers: {
                         'X-CSRFToken': '{{ csrf_token }}',
+                        'X-Requested-With': 'XMLHttpRequest'
                       }
                     }).then(res => res.json()).then(data => {
                       this.items = this.items.filter(i => i.id !== item.id);
