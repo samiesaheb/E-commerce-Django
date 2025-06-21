@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+{% block title %}Manage Brands{% endblock %}
+
+{% block content %}
+<section class="py-12 px-6 max-w-6xl mx-auto">
+  <h1 class="text-3xl font-bold mb-6 text-red-600">Manage Brands</h1>
+
+  <div class="bg-white rounded shadow p-6">
+    <ul class="space-y-4">
+      {% for brand in brands %}
+      <li class="flex justify-between items-center border-b pb-4">
+        <span class="font-semibold">{{ brand.name }}</span>
+        <span class="text-sm text-gray-500">{{ brand.description|truncatewords:12 }}</span>
+      </li>
+      {% empty %}
+      <li class="text-gray-500">No brands available.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock %}
