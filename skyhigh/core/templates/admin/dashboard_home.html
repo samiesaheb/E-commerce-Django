@@ -2,26 +2,46 @@
 {% block title %}Admin Dashboard{% endblock %}
 
 {% block content %}
-<section class="py-12 px-6 max-w-6xl mx-auto">
-  <h1 class="text-3xl font-bold mb-6 text-red-600">Admin Dashboard</h1>
+<div class="max-w-6xl mx-auto px-6 py-12">
+  <h1 class="text-3xl font-bold mb-8 text-red-600">Admin Dashboard</h1>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    <div class="bg-white p-6 rounded shadow text-center">
-      <p class="text-gray-500">Total Products</p>
-      <p class="text-2xl font-bold text-red-600">{{ total_products }}</p>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white shadow rounded p-6">
+      <h2 class="text-xl font-semibold text-gray-800 mb-2">Products</h2>
+      <p class="text-gray-600 mb-4">Manage all store products.</p>
+      <a href="{% url 'admin_manage_products' %}" class="text-red-600 font-medium hover:underline">Manage Products →</a>
     </div>
-    <div class="bg-white p-6 rounded shadow text-center">
-      <p class="text-gray-500">Total Brands</p>
-      <p class="text-2xl font-bold text-red-600">{{ total_brands }}</p>
+
+    <div class="bg-white shadow rounded p-6">
+      <h2 class="text-xl font-semibold text-gray-800 mb-2">Orders</h2>
+      <p class="text-gray-600 mb-4">View and fulfill customer orders.</p>
+      <a href="{% url 'admin_manage_orders' %}" class="text-red-600 font-medium hover:underline">Manage Orders →</a>
     </div>
-    <div class="bg-white p-6 rounded shadow text-center">
-      <p class="text-gray-500">Total Orders</p>
-      <p class="text-2xl font-bold text-red-600">{{ total_orders }}</p>
-    </div>
-    <div class="bg-white p-6 rounded shadow text-center">
-      <p class="text-gray-500">Total Revenue</p>
-      <p class="text-2xl font-bold text-red-600">฿{{ total_revenue|floatformat:2 }}</p>
+
+    <div class="bg-white shadow rounded p-6">
+      <h2 class="text-xl font-semibold text-gray-800 mb-2">Brands</h2>
+      <p class="text-gray-600 mb-4">Create and update product brands.</p>
+      <a href="{% url 'admin_manage_brands' %}" class="text-red-600 font-medium hover:underline">Manage Brands →</a>
     </div>
   </div>
-</section>
+
+  <div class="mt-12 grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+    <div class="bg-gray-100 p-4 rounded shadow">
+      <h3 class="text-lg font-semibold text-gray-700">Products</h3>
+      <p class="text-2xl font-bold text-red-600">{{ total_products }}</p>
+    </div>
+    <div class="bg-gray-100 p-4 rounded shadow">
+      <h3 class="text-lg font-semibold text-gray-700">Brands</h3>
+      <p class="text-2xl font-bold text-red-600">{{ total_brands }}</p>
+    </div>
+    <div class="bg-gray-100 p-4 rounded shadow">
+      <h3 class="text-lg font-semibold text-gray-700">Orders</h3>
+      <p class="text-2xl font-bold text-red-600">{{ total_orders }}</p>
+    </div>
+    <div class="bg-gray-100 p-4 rounded shadow">
+      <h3 class="text-lg font-semibold text-gray-700">Revenue</h3>
+      <p class="text-2xl font-bold text-green-700">฿{{ total_revenue|floatformat:2 }}</p>
+    </div>
+  </div>
+</div>
 {% endblock %}

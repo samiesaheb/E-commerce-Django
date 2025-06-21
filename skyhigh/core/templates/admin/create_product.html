@@ -1,0 +1,53 @@
+{% extends "core/base.html" %}
+{% block title %}Create New Product{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-6 text-gray-800">Create New Product</h1>
+
+  <form method="post" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md space-y-4">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Name</label>
+      {{ form.name }}
+      {{ form.name.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Brand</label>
+      {{ form.brand }}
+      {{ form.brand.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Price (฿)</label>
+      {{ form.price }}
+      {{ form.price.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Slug</label>
+      {{ form.slug }}
+      {{ form.slug.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Description</label>
+      {{ form.description }}
+      {{ form.description.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Main Image</label>
+      {{ form.main_image }}
+      {{ form.main_image.errors }}
+    </div>
+
+    <button type="submit" class="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+      Create Product
+    </button>
+  </form>
+</div>
+{% endblock %}

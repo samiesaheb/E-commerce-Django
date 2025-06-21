@@ -26,4 +26,5 @@ urlpatterns = [
     ),
     path("services/", services_view, name="services"),
     path("<slug:slug>/", service_detail_view, name="service_detail"),
+    path('admin/dashboard/', include('core.urls.admin_dashboard')),
 ]

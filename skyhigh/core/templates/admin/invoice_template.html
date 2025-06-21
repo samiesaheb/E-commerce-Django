@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice INV-{{ order.id|stringformat:"05d" }}</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      font-size: 14px;
+      padding: 20px;
+      color: #333;
+    }
+    .logo {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+    .header, .footer {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    th {
+      background-color: #f8f8f8;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✅ Logo and Header -->
+  <div class="header">
+    <img src="{{ logo_url }}" alt="Sky High Logo" style="width: 150px; height: auto;">
+    <h2>Invoice <span style="color: #444;">INV-{{ order.id|stringformat:"05d" }}</span></h2>
+    <p>Issued on {{ order.created_at|date:"M d, Y" }}</p>
+  </div>
+
+  <!-- Order & Customer Info -->
+  <p><strong>Customer:</strong> {{ order.full_name }}</p>
+  <p><strong>Address:</strong> {{ order.address }}, {{ order.city }}, {{ order.postal_code }}, {{ order.country }}</p>
+  <p><strong>Email:</strong> {{ order.email }}</p>
+
+  <!-- Items Table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Qty</th>
+        <th>Unit Price (฿)</th>
+        <th>Subtotal (฿)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order.items.all %}
+      <tr>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.price|floatformat:2 }}</td>
+        <td>{{ item.subtotal|floatformat:2 }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Total -->
+  <p style="text-align: right; margin-top: 20px;"><strong>Total Paid: ฿{{ order.total_price|floatformat:2 }}</strong></p>
+
+  <!-- 🔧 Payment Info -->
+  <div style="margin-top: 10px; font-size: 13px; color: #555;">
+    <p><strong>Payment Method:</strong> Credit Card (via Stripe)</p>
+    <p><strong>Payment Terms:</strong> Paid in full · Non-refundable</p>
+  </div>
+  
+  <!-- Footer -->
+  <hr style="margin-top: 40px; margin-bottom: 10px;">
+  <div style="margin-top: 60px; border-top: 1px solid #ddd; padding-top: 10px;">
+    <footer style="font-size: 12px; color: #777; text-align: center;">
+      <p><strong>Sky High International Co., Ltd.</strong></p>
+      <p>524 Moo 7, Bangpoo Mai, Muang, Samutprakarn 10280, Thailand</p>
+      <p>Tel: (662) 3233517 - 20 | Fax: (662) 23233516 | Email: samie@skyhigh.co.th</p>
+    </footer>
+  </div>
+
+</body>
+</html>

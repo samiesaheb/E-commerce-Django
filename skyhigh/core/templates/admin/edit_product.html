@@ -1,0 +1,66 @@
+{% extends "core/base.html" %}
+{% block title %}Edit Product - {{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-8">
+    <a href="{% url 'admin_manage_products' %}" 
+        class="inline-block mb-4 text-sm text-red-600 hover:underline">
+        ← Back to Products
+</a>
+
+  <h1 class="text-2xl font-bold mb-6 text-gray-800">Edit Product: {{ product.name }}</h1>
+
+  <form method="post" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md space-y-4">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Name</label>
+      {{ form.name }}
+      {{ form.name.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Brand</label>
+      {{ form.brand }}
+      {{ form.brand.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Price (฿)</label>
+      {{ form.price }}
+      {{ form.price.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Slug</label>
+      {{ form.slug }}
+      {{ form.slug.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Description</label>
+      {{ form.description }}
+      {{ form.description.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Main Image</label>
+      {{ form.main_image }}
+      {{ form.main_image.errors }}
+    </div>
+
+    {% if product.main_image %}
+    <div>
+      <p class="text-sm text-gray-600 mb-1">Current Image:</p>
+      <img src="{{ product.main_image.url }}" alt="{{ product.name }}"
+           class="w-32 h-32 object-cover rounded border">
+    </div>
+    {% endif %}
+
+    <button type="submit" class="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+      Save Changes
+    </button>
+  </form>
+</div>
+{% endblock %}

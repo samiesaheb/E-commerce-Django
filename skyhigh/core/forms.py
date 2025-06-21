@@ -7,7 +7,7 @@ from django.contrib.auth.forms import (
     PasswordChangeForm,
 )
 from django.contrib.auth.models import User
-
+from core.models import Product
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True)
@@ -58,3 +58,27 @@ class CustomPasswordChangeForm(PasswordChangeForm):
             field.widget.attrs.update(
                 {"class": "w-full border border-gray-300 rounded p-2"}
             )
+
+class AdminProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ["name", "brand", "price", "description", "slug", "main_image"]  # ← Added main_image
+        widgets = {
+            "description": forms.Textarea(attrs={"rows": 4, "class": "w-full border rounded p-2"}),
+            "name": forms.TextInput(attrs={"class": "w-full border rounded p-2"}),
+            "slug": forms.TextInput(attrs={"class": "w-full border rounded p-2"}),
+            "price": forms.NumberInput(attrs={"class": "w-full border rounded p-2"}),
+            "brand": forms.Select(attrs={"class": "w-full border rounded p-2"}),
+            "main_image": forms.ClearableFileInput(attrs={"class": "w-full border rounded p-2"}),  # ← Add this
+        }
+
+from core.models import Brand
+
+class AdminBrandForm(forms.ModelForm):
+    class Meta:
+        model = Brand
+        fields = ['name', 'slug']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'w-full border rounded p-2'}),
+            'slug': forms.TextInput(attrs={'class': 'w-full border rounded p-2'}),
+        }

@@ -1,0 +1,39 @@
+{% extends "core/base.html" %}
+{% block title %}Edit Brand - {{ brand.name }}{% endblock %}
+
+{% block content %}
+<div class="max-w-xl mx-auto px-4 py-8">
+  <a href="{% url 'admin_manage_brands' %}" class="text-sm text-red-600 hover:underline mb-4 block">
+    ← Back to Brands
+  </a>
+
+  <h1 class="text-2xl font-bold text-gray-800 mb-6">Edit Brand: {{ brand.name }}</h1>
+
+  <form method="post" class="bg-white p-6 rounded-lg shadow-md space-y-4">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Name</label>
+      {{ form.name }}
+      {{ form.name.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Slug</label>
+      {{ form.slug }}
+      {{ form.slug.errors }}
+    </div>
+
+    <div>
+      <label class="block mb-1 font-medium text-gray-700">Description</label>
+      {{ form.description }}
+      {{ form.description.errors }}
+    </div>
+
+    <button type="submit" class="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+      Save Changes
+    </button>
+  </form>
+</div>
+{% endblock %}

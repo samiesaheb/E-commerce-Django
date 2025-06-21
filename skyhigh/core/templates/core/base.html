@@ -13,8 +13,7 @@
   <link rel="icon" href="{% static 'images/favicon.ico' %}" />
 
   <!-- Font Awesome CDN -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-B5x5z4YJe9lFw3VcI7V9lmVkSpbY/94qNjkLG4gr8wUwHVlMPMF0etmbgLZAnNS6nbOmz8nG2Gn5gw+5yXc5FA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-B5x5z4YJe9lFw3VcI7V9lmVkSpbY/94qNjkLG4gr8wUwHVlMPMF0etmbgLZAnNS6nbOmz8nG2Gn5gw+5yXc5FA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
@@ -36,9 +35,26 @@
 
 <body class="bg-white text-gray-900 font-sans min-h-screen flex flex-col">
   {% include "core/header.html" %}
+
+  <!-- ✅ Flash Messages -->
+  {% if messages %}
+    <div class="max-w-4xl mx-auto px-4 pt-6">
+      {% for message in messages %}
+        <div class="mb-4 p-4 rounded border text-sm font-medium
+          {% if message.tags == 'success' %}bg-green-100 text-green-800 border-green-200
+          {% elif message.tags == 'error' or message.tags == 'danger' %}bg-red-100 text-red-800 border-red-200
+          {% elif message.tags == 'warning' %}bg-yellow-100 text-yellow-800 border-yellow-200
+          {% else %}bg-gray-100 text-gray-800 border-gray-200{% endif %}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
   <main class="flex-grow">
     {% block content %}{% endblock %}
   </main>
+
   {% include "core/footer.html" %}
 
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
