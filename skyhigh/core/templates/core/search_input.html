@@ -36,7 +36,7 @@
       x-transition:leave="transition ease-in duration-150"
       x-transition:leave-start="opacity-100 translate-y-0"
       x-transition:leave-end="opacity-0 -translate-y-1"
-      class="absolute z-50 mt-2 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto focus:outline-none overscroll-contain"
+      class="absolute z-50 mt-2 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-96 overflow-y-auto overflow-y-auto focus:outline-none overscroll-contain"
       tabindex="0"
       x-ref="dropdown"
       @keydown.arrow-down.prevent="highlightNext(); scrollToActive()"
@@ -102,12 +102,12 @@ function liveSearch() {
       }
     },
 
+
     handleEnter(event) {
       if (this.activeIndex >= 0 && this.activeIndex < this.suggestions.length) {
         event.preventDefault();
         this.navigateTo(this.suggestions[this.activeIndex].slug);
       }
-      // Otherwise allow the form to submit normally
     },
 
     navigateToActive() {

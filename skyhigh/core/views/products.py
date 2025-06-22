@@ -55,7 +55,7 @@ def product_search(request):
 def product_autocomplete(request):
     query = request.GET.get("q", "")
     if query:
-        products = Product.objects.filter(name__icontains=query)[:8]
+        products = Product.objects.filter(name__icontains=query)[:30]
         results = []
         for p in products:
             # Derive folder from brand slug (matches your static subfolder structure)
