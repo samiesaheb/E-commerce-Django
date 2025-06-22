@@ -1,33 +1,35 @@
-<footer class="bg-gray-50 text-gray-700 border-t border-gray-200 py-8 mt-16">
-  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+<footer class="bg-white text-gray-700 border-t border-gray-200 pt-12 pb-8 mt-20 shadow-inner">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10 text-sm">
 
-    <!-- Company Info -->
-    <div class="text-center md:text-left space-y-1">
-      <h3 class="text-lg font-semibold text-red-600 mb-2">Sky High International</h3>
-      <p>524 Moo 7, Bangpoo Mai, Muang, Samut Prakan 10280, Thailand</p>
-      <p>Tel: (+66) 23233517 - 20</p>
+    <!-- 🏢 Company Info -->
+    <div class="text-center md:text-left space-y-2">
+      <h3 class="text-xl font-bold text-red-600 mb-3 tracking-tight">Sky High International</h3>
+      <p>524 Moo 7, Bangpoo Mai, Muang,<br />Samut Prakan 10280, Thailand</p>
+      <p>Tel: <a href="tel:+6623233517" class="hover:underline">(+66) 23233517 - 20</a></p>
       <p>Fax: (+66) 23233516</p>
-      <p>Email: 
+      <p>Email:
         <a href="mailto:samie@skyhigh.co.th" class="text-red-600 hover:underline">
           samie@skyhigh.co.th
         </a>
       </p>
     </div>
 
-    <!-- Social Media & Policies -->
-    <div class="text-center md:text-right space-y-2">
-      <h4 class="text-lg font-semibold mb-2">Follow Us</h4>
-      <a href="https://www.instagram.com/skyhigh.inter" target="_blank" rel="noopener noreferrer"
-         class="text-red-600 hover:underline block">
-        Instagram
-      </a>
-
-      <div class="flex flex-col md:flex-row md:justify-end md:space-x-4 space-y-2 md:space-y-0 mt-4">
-        <a href="{% url 'core:privacy_policy' %}" class="text-gray-600 hover:underline">Privacy Policy</a>
-        <a href="{% url 'core:terms_and_conditions' %}" class="text-gray-600 hover:underline">Terms & Conditions</a>
+    <!-- 🌐 Social + Policies -->
+    <div class="text-center md:text-right space-y-4">
+      <div>
+        <h4 class="text-lg font-semibold text-gray-800">Follow Us</h4>
+        <a href="https://www.instagram.com/skyhigh.inter" target="_blank" rel="noopener noreferrer"
+           class="inline-block mt-1 text-red-600 hover:underline hover:text-red-700 transition">
+          Instagram
+        </a>
       </div>
 
-      <p class="mt-4 text-xs text-gray-500">&copy; 2025 Sky High International Co., Ltd. All rights reserved.</p>
+      <div class="flex flex-col md:flex-row md:justify-end md:space-x-6 space-y-2 md:space-y-0 text-gray-600 text-sm">
+        <a href="{% url 'core:privacy_policy' %}" class="hover:underline hover:text-gray-900">Privacy Policy</a>
+        <a href="{% url 'core:terms_and_conditions' %}" class="hover:underline hover:text-gray-900">Terms & Conditions</a>
+      </div>
+
+      <p class="text-xs text-gray-400 mt-6">&copy; 2025 Sky High International Co., Ltd. All rights reserved.</p>
     </div>
   </div>
 </footer>

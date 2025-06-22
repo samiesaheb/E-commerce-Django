@@ -2,28 +2,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Basic Meta -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Sky High International – Private-label cosmetic manufacturing powered by science, elegance, and innovation.">
   <meta name="author" content="Sky High International Co., Ltd.">
+  <meta name="theme-color" content="#b91c1c" />
+
+  <!-- SEO -->
+  <meta property="og:title" content="Sky High International" />
+  <meta property="og:description" content="Elegant, science-backed private-label cosmetics manufacturing." />
+  <meta property="og:image" content="{% static 'images/logo.jpg' %}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://skyhigh-inter.com/" />
 
   <title>{% block title %}Sky High{% endblock %}</title>
 
-  <!-- ✅ Favicon -->
+  <!-- Favicon -->
   <link rel="icon" href="{% static 'images/favicon.ico' %}" />
 
-  <!-- Font Awesome CDN -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-B5x5z4YJe9lFw3VcI7V9lmVkSpbY/94qNjkLG4gr8wUwHVlMPMF0etmbgLZAnNS6nbOmz8nG2Gn5gw+5yXc5FA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 
-  <!-- Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Animate On Scroll (AOS) -->
+  <!-- Animate On Scroll -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 
   <!-- Custom Styles -->
@@ -33,33 +42,39 @@
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 
-<body class="bg-white text-gray-900 font-sans min-h-screen flex flex-col">
+<body class="bg-white text-gray-900 font-sans min-h-screen flex flex-col scroll-smooth antialiased selection:bg-red-200">
+  <!-- Header -->
   {% include "core/header.html" %}
 
-  <!-- ✅ Flash Messages -->
+  <!-- Flash Messages -->
   {% if messages %}
-    <div class="max-w-4xl mx-auto px-4 pt-6">
+    <div class="max-w-4xl mx-auto px-4 pt-6 space-y-4">
       {% for message in messages %}
-        <div class="mb-4 p-4 rounded border text-sm font-medium
-          {% if message.tags == 'success' %}bg-green-100 text-green-800 border-green-200
-          {% elif message.tags == 'error' or message.tags == 'danger' %}bg-red-100 text-red-800 border-red-200
-          {% elif message.tags == 'warning' %}bg-yellow-100 text-yellow-800 border-yellow-200
-          {% else %}bg-gray-100 text-gray-800 border-gray-200{% endif %}">
+        <div class="p-4 rounded-md border text-sm font-medium shadow-sm transition-all duration-300
+          {% if message.tags == 'success' %}bg-green-100 text-green-800 border-green-300
+          {% elif message.tags == 'error' or message.tags == 'danger' %}bg-red-100 text-red-800 border-red-300
+          {% elif message.tags == 'warning' %}bg-yellow-100 text-yellow-800 border-yellow-300
+          {% else %}bg-gray-100 text-gray-800 border-gray-300{% endif %}">
           {{ message }}
         </div>
       {% endfor %}
     </div>
   {% endif %}
 
-  <main class="flex-grow">
+  <!-- Main Content -->
+  <main class="flex-grow" data-aos="fade-in">
     {% block content %}{% endblock %}
   </main>
 
+  <!-- Footer -->
   {% include "core/footer.html" %}
 
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 1000, once: true });
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init({ duration: 1000, once: true });
+    });
   </script>
 </body>
 </html>

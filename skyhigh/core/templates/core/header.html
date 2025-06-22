@@ -238,11 +238,11 @@ x-init="
               class="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50 p-4 space-y-2 text-sm"
               x-cloak>
             {% if user.is_authenticated %}
+              <a href="{% url 'auth:profile' %}" class="block px-3 py-1 hover:bg-gray-100 rounded">My Profile</a>
+
               {% if user.is_staff %}
                 <a href="{% url 'admin_dashboard_home' %}" class="block px-3 py-1 hover:bg-gray-100 text-red-600 font-medium rounded">Admin Dashboard</a>
               {% endif %}
-
-              <a href="{% url 'auth:profile' %}" class="block px-3 py-1 hover:bg-gray-100 rounded">Profile</a>
 
               <form method="POST" action="{% url 'account_logout' %}">
                 {% csrf_token %}
@@ -254,7 +254,6 @@ x-init="
             {% endif %}
           </div>
         </div>
-
 
 
 
