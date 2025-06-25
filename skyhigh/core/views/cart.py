@@ -6,13 +6,19 @@ from django.http import JsonResponse, HttpRequest, HttpResponse,  HttpResponseRe
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 import json
-
+from datetime import date
+from core.models.product import ProductAnalytics
 
 @require_POST
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     cart = request.session.get("cart", {})
     product_id_str = str(product.id)
+
+    # 🛒 Track cart add in analytics
+    analytics, _ = ProductAnalytics.objects.get_or_create(product=product, date=date.today())
+    analytics.cart_add_count += 1
+    analytics.save()
 
     if product_id_str in cart:
         cart[product_id_str] += 1
@@ -26,7 +32,6 @@ def add_to_cart(request, product_id):
         return JsonResponse({"success": True, "cart_count": cart_count})
 
     return redirect(request.META.get("HTTP_REFERER", "/"))
-
 
 def view_cart(request):
     cart: Dict[str, int] = request.session.get("cart", {})

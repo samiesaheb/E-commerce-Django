@@ -7,16 +7,37 @@ from core.models.order import Order
 from core.forms import AdminProductForm, AdminBrandForm
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_POST
+import csv
+from core.models.product import ProductAnalytics
+from django.db.models import Sum
+from datetime import timedelta, date
+from django.contrib.auth.models import User
+from core.models.user_analytics import UserAnalytics
+
 
 @staff_member_required
 def dashboard_home(request):
+    today = date.today()
+
+    total_products = Product.objects.count()
+    total_brands = Brand.objects.count()
+    total_orders = Order.objects.count()
+    total_revenue = sum(order.total_price for order in Order.objects.all())
+
+    new_users_today = UserAnalytics.objects.filter(event_type="signup", timestamp__date=today).count()
+    logins_today = UserAnalytics.objects.filter(event_type="login", timestamp__date=today).count()
+
     context = {
-        "total_products": Product.objects.count(),
-        "total_brands": Brand.objects.count(),
-        "total_orders": Order.objects.count(),
-        "total_revenue": sum(order.total_price for order in Order.objects.all()),
+        "total_products": total_products,
+        "total_brands": total_brands,
+        "total_orders": total_orders,
+        "total_revenue": total_revenue,
+        "new_users_today": new_users_today,
+        "logins_today": logins_today,
     }
+
     return render(request, 'admin/dashboard_home.html', context)
+
 
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -275,5 +296,77 @@ def export_products_csv(request):
 
     for product in Product.objects.select_related('brand').all():
         writer.writerow([product.id, product.name, product.slug, product.brand.name, product.price])
+
+    return response
+
+from core.models.product import Product, ProductAnalytics
+from datetime import timedelta, date
+from django.utils.dateparse import parse_date
+
+def product_analytics_dashboard(request):
+    # Handle filters
+    product_id = request.GET.get("product_id")
+    start_date = parse_date(request.GET.get("start_date") or "") or date.today() - timedelta(days=30)
+    end_date = parse_date(request.GET.get("end_date") or "") or date.today()
+
+    # Base queryset
+    queryset = ProductAnalytics.objects.filter(date__range=(start_date, end_date))
+
+    if product_id and product_id.isdigit():
+        queryset = queryset.filter(product_id=product_id)
+
+    aggregated = (
+        queryset
+        .values("product_id", "date")
+        .annotate(total_views=Sum("view_count"), total_cart_adds=Sum("cart_add_count"))
+        .order_by("date")
+    )
+
+    product_map = {p.id: p.name for p in Product.objects.all()}
+    data = [
+        {
+            "product_name": product_map.get(row["product_id"], "Unknown"),
+            "date": row["date"].isoformat(),
+            "total_views": row["total_views"],
+            "total_cart_adds": row["total_cart_adds"],
+        }
+        for row in aggregated
+    ]
+
+    return render(request, "admin/product_analytics.html", {
+        "analytics_data": data,
+        "products": Product.objects.all(),
+        "selected_product_id": int(product_id) if product_id and product_id.isdigit() else None,
+        "start_date": start_date.isoformat(),
+        "end_date": end_date.isoformat(),
+    })
+
+
+def export_product_analytics_csv(request):
+    product_id = request.GET.get("product_id")
+    start_date = parse_date(request.GET.get("start_date") or "")
+    end_date = parse_date(request.GET.get("end_date") or "")
+
+    queryset = ProductAnalytics.objects.all()
+
+    if start_date and end_date:
+        queryset = queryset.filter(date__range=(start_date, end_date))
+    if product_id and product_id.isdigit():
+        queryset = queryset.filter(product_id=product_id)
+
+    # Prepare CSV
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = 'attachment; filename="product_analytics.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(["Product", "Date", "Views", "Cart Adds"])
+
+    for entry in queryset.select_related("product").order_by("date"):
+        writer.writerow([
+            entry.product.name,
+            entry.date.isoformat(),
+            entry.view_count,
+            entry.cart_add_count,
+        ])
 
     return response

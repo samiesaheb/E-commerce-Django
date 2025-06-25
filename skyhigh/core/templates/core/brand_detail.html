@@ -23,7 +23,7 @@
             <div>
               <h3 class="text-lg font-bold text-gray-800 mb-1">
                 {% if product.slug %}
-                  <a href="{% url 'products:product-detail' slug=product.slug %}" class="hover:underline">
+                  <a href="{% url 'products:product_detail' slug=product.slug %}" class="hover:underline">
                     {{ product.name }}
                   </a>
                 {% else %}

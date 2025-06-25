@@ -1,0 +1,24 @@
+{% extends "core/base.html" %}
+
+{% block title %}All Products{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-4">🛍️ All Products</h1>
+
+  {% if products %}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {% for product in products %}
+        <div class="bg-white shadow-md p-4 rounded">
+          <h2 class="text-lg font-semibold">{{ product.name }}</h2>
+          <p class="text-sm text-gray-600">Brand: {{ product.brand.name }}</p>
+          <p class="mt-2 text-red-600 font-bold">฿{{ product.price }}</p>
+          <a href="{% url 'products:product_detail' product.slug %}" class="text-blue-500 hover:underline mt-2 inline-block">View</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No products available.</p>
+  {% endif %}
+</div>
+{% endblock %}

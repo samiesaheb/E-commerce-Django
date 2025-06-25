@@ -23,6 +23,13 @@
       <p class="text-gray-600 mb-4">Create and update product brands.</p>
       <a href="{% url 'admin_manage_brands' %}" class="text-red-600 font-medium hover:underline">Manage Brands →</a>
     </div>
+
+    <!-- ✅ NEW: Product Analytics -->
+    <div class="bg-white shadow rounded p-6">
+      <h2 class="text-xl font-semibold text-gray-800 mb-2">Analytics</h2>
+      <p class="text-gray-600 mb-4">Track views, cart adds, and trends.</p>
+      <a href="{% url 'product_analytics' %}" class="text-red-600 font-medium hover:underline">View Analytics →</a>
+    </div>
   </div>
 
   <div class="mt-12 grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
@@ -41,6 +48,12 @@
     <div class="bg-gray-100 p-4 rounded shadow">
       <h3 class="text-lg font-semibold text-gray-700">Revenue</h3>
       <p class="text-2xl font-bold text-green-700">฿{{ total_revenue|floatformat:2 }}</p>
+    <!-- ✅ Users & Logins -->
+    <div class="bg-gray-100 p-4 rounded shadow">
+      <h3 class="text-lg font-semibold text-gray-700">Users & Logins</h3>
+      <p class="text-sm text-gray-600">New Users Today: <span class="text-red-600 font-bold">{{ new_users_today }}</span></p>
+      <p class="text-sm text-gray-600">Logins Today: <span class="text-green-600 font-bold">{{ logins_today }}</span></p>
+    </div>
     </div>
   </div>
 </div>

@@ -3,6 +3,10 @@ from django.db.models import Q  # For search functionality
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.templatetags.static import static
+from datetime import date
+from core.models.product import ProductAnalytics
+from datetime import date
+from core.models.product import ProductAnalytics
 
 
 
@@ -10,7 +14,12 @@ from django.templatetags.static import static
 def product_detail(request, slug):
     product = get_object_or_404(Product, slug=slug)
 
-    # Map known brand slugs to their image folders
+    # 🔍 Track product view (per product per day)
+    analytics, _ = ProductAnalytics.objects.get_or_create(product=product, date=date.today())
+    analytics.view_count += 1
+    analytics.save()
+
+    # 📁 Map known brand slugs to their image folders
     image_folder_map = {
         "geometry": "geometry",
         "facial-care": "facialcare",

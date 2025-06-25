@@ -1,5 +1,6 @@
 from django.urls import path
 from core.views import admin_dashboard
+from core.views.admin_dashboard import product_analytics_dashboard, export_product_analytics_csv
 
 urlpatterns = [
     path('', admin_dashboard.dashboard_home, name='admin_dashboard_home'),
@@ -19,4 +20,6 @@ urlpatterns = [
     path('orders/', admin_dashboard.manage_orders, name='admin_manage_orders'),
     path('orders/fulfill/<int:order_id>/', admin_dashboard.fulfill_order, name='admin_fulfill_order'),
     path('orders/invoice/<int:order_id>/', admin_dashboard.download_invoice, name='admin_download_invoice'),
+    path("analytics/", product_analytics_dashboard, name="product_analytics"),
+    path("analytics/export/", export_product_analytics_csv, name="export_product_analytics_csv"),
 ]

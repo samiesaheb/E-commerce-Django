@@ -2,7 +2,7 @@
       x-data="liveSearch()" @keydown.escape="clearAll"
       x-on:search-open.window="$nextTick(() => $refs.searchInput.focus())"
       @click.stop
-      class="relative w-full max-w-2xl mx-auto">
+      class="relative w-full bg-white border border-gray-300 rounded-full shadow-sm">
 
   <!-- Search Input -->
   <label for="site-search" class="sr-only">Search Products</label>
@@ -17,7 +17,7 @@
     @keydown.arrow-up.prevent="highlightPrev"
     @keydown.enter="handleEnter"
     placeholder="Find on skyhigh-inter.com"
-    class="w-full pl-4 pr-10 py-3 rounded-full border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none shadow text-base"
+    class="w-full pl-4 pr-10 py-3 rounded-full border-none focus:ring-2 focus:ring-red-500 focus:outline-none shadow text-base"
     autocomplete="off"
   />
 
@@ -64,7 +64,6 @@
   </ul>
 
 </form>
-
 
 <script>
 function liveSearch() {
